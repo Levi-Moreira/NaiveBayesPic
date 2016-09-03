@@ -8,9 +8,9 @@
  * */
 
 #include <stdio.h>
-#include "../defines.h"
-#include "prediction.h"
-#include "../util.h"
+#include "../include/defines.h"
+#include "../include/prediction.h"
+#include "../include/util.h"
 
 /**
  * @brief Shows off the skill of the classifier by predicting the class of a certain entry.

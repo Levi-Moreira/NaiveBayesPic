@@ -8,8 +8,8 @@
  * */
 
 #include <stdio.h>
-#include "util.h"
-#include "defines.h"
+#include "../include/util.h"
+#include "../include/defines.h"
 
 
 /**

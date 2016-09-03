@@ -6168,3 +6168,53 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
+
+# 54 "src/../include/defines.h"
+const float testSet[30][77];
+const float means[10][77 - 1];
+const float stdevs[10][77 - 1];
+unsigned int confusionMatrix[10][10];
+
+
+# 8 "src/main.c"
+#pragma config FOSC = HS
+#pragma config IESO = OFF
+#pragma config PWRT = OFF
+#pragma config BORV = 3
+#pragma config WDT = OFF
+#pragma config WDTPS = 32768
+#pragma config MCLRE = OFF
+#pragma config LPT1OSC = OFF
+#pragma config PBADEN = OFF
+#pragma config STVREN = ON
+#pragma config LVP = OFF
+
+
+unsigned char UART1Config = 0, baud = 0;
+
+void putch(unsigned char data) {
+while( ! PIR1bits.TXIF)
+continue;
+TXREG = data;
+}
+
+void init_uart(void) {
+TXSTAbits.TXEN = 1;
+RCSTAbits.SPEN = 1;
+
+UART1Config = 0b01111111 & 0b10111111 & 0b11111110 & 0b11111101 & 0b11111111 ;
+baud = 129;
+OpenUSART(UART1Config,baud);
+
+}
+
+void main()
+{
+init_uart();
+
+while(1)
+{
+
+_delay((unsigned long)((10)*(20000000/4000.0)));
+}
+}
