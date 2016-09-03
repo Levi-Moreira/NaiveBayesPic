@@ -3,7 +3,7 @@
 #include <plib/usart.h>
 #include <math.h>
 #include <stdio.h>
-#include "include/defines.h"
+#include "../include/defines.h"
 // BEGIN CONFIG
 #pragma config FOSC     = HS    /// EXTERN CLOCK 8MHZ
 #pragma config IESO     = OFF   /// INTERNAL/EXTERNAL OSCILATOR DISABLE
@@ -19,9 +19,6 @@
 //END CONFIG
 
 unsigned char UART1Config = 0, baud = 0;
-int x = 110;
-float a = 9.123;
-
 
 void putch(unsigned char data) {
     while( ! PIR1bits.TXIF)          // wait until the transmitter is ready
@@ -41,12 +38,7 @@ void init_uart(void) {
 
 void main()
 {
-    a = log(a);
-    a = pow(a,2);
-    a = exp(a);
-
     init_uart();
-    printf("Levi Moreira\n %2.2f",a);
     
     while(1) //infinite loop
     {
