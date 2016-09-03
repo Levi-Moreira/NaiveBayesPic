@@ -48,10 +48,11 @@
 
 
 #define TRAINING_LINES ((int) ((LINES * TRAINING_RATIO) + 1))       /**< The number of lines in the training dataset. */
-#define TEST_LINES (LINES - TRAINING_LINES)                         /**< The number of lines in the test dataset. */
+//#define TEST_LINES (LINES - TRAINING_LINES)                         /**< The number of lines in the test dataset. */
+#define TEST_LINES 30                       /**< The number of lines in the test dataset. */
 
 //float trainingSet[TRAINING_LINES][COLUMNS];                         /**< Matrix that contains the training data, that will be used to make predictions */
-const float testSet[30][COLUMNS];                                 /**< Holds the data that will be tested after the training */
+const float testSet[TEST_LINES][COLUMNS-1];                                 /**< Holds the data that will be tested after the training */
 const float means[CLASSES][COLUMNS - 1];                                  /**< Holds all the means values used on the training */
 const float stdevs[CLASSES][COLUMNS - 1];                                 /**< Holds all the standard deviation value used on the training */
 unsigned int confusionMatrix[CLASSES][CLASSES];                              /**< Holds the confusion matrix values for the dataset */

@@ -3,6 +3,7 @@
 #include <plib/usart.h>
 #include <math.h>
 #include <stdio.h>
+#include <time.h>
 #include "../include/defines.h"
 // BEGIN CONFIG
 #pragma config FOSC     = HS    /// EXTERN CLOCK 8MHZ
@@ -40,9 +41,22 @@ void main()
 {
     init_uart();
     
-    while(1) //infinite loop
-    {
+    //srand(time(NULL));
+    printf("Calculating metrics\n");
+    calculateMetrics();
     
-      __delay_ms(10);
-    }
+    
+    printf("Printing confusion matrix\n");
+    /* Print confusion matrix for the model */
+    printConfusionMatrix();
+    
+    /* Show the metrics for the model */
+    
+    printf("Printing metrics\n");
+    printMetrics();
+
+    /* Show off the prediction skills */
+    //showOff(rand()%TEST_LINES);
+    
+    while(1);
 }
