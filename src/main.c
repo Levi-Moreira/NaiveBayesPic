@@ -3,8 +3,9 @@
 #include <plib/usart.h>
 #include <math.h>
 #include <stdio.h>
-#include <time.h>
+#include "../include/extra.h"
 #include "../include/defines.h"
+
 // BEGIN CONFIG
 #pragma config FOSC     = HS    /// EXTERN CLOCK 8MHZ
 #pragma config IESO     = OFF   /// INTERNAL/EXTERNAL OSCILATOR DISABLE
@@ -42,21 +43,20 @@ void main()
     init_uart();
     
     //srand(time(NULL));
-    printf("Calculating metrics\n");
+    
+    printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");
+
+    /* Calculates Recall and Precision for classes */
     calculateMetrics();
-    
-    
-    printf("Printing confusion matrix\n");
+
     /* Print confusion matrix for the model */
     printConfusionMatrix();
-    
+
     /* Show the metrics for the model */
-    
-    printf("Printing metrics\n");
     printMetrics();
 
     /* Show off the prediction skills */
-    //showOff(rand()%TEST_LINES);
+    showOff(0);
     
     while(1);
 }

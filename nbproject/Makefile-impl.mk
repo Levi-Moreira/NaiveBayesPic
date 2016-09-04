@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=PIC_NaiveBayes.X
+PROJECTNAME=NaiveBayesPic
 
 # Active Configuration
 DEFAULTCONF=default

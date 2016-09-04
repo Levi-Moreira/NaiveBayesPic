@@ -53,9 +53,13 @@ float calculateClassProbability(int classNumber, float *inputVector)
     {
         /*  considering the Bayes criterion, the total probability is the product of each single probability */
         classProbability+=calculateProbability(inputVector[i], means[classNumber][i], stdevs[classNumber][i] );
+//        printf("Class: %d\n", classNumber);
+//        printf("Column: %d\n", i);
+//        printf("Prob: %f\n\n", classProbability);
     }
 
-    return classProbability;
+//    return classProbability;
+    return 1;
 
 }
 

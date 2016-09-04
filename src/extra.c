@@ -31,29 +31,4 @@ void showOff(int testLine)
         printf("It's a miss :(\n");
     }
 
-
 }
-
-/**
- * @brief Calculates the k-fold cross Accuracy for the whole dataset. This function is used for test purposes only.
- * @param The size of the fold (normally 10)
- * @return The mean accuracy for the fold
- * */
-float getCrossAccuracy(int fold)
-{
-    int i;
-    float cumulativeAccuracy = 0;
-    float currentAccuracy = 0;
-    for(i = 0; i<fold; i++)
-    {
-        // srand(time(0)+i*123);
-       // loadFullDatasetFromCsv();
-       // calculateSummaries();
-        currentAccuracy = getAccuracy();
-        printf("%2.2f\n",currentAccuracy);
-        cumulativeAccuracy+=currentAccuracy;
-    }
-
-    return cumulativeAccuracy/10;
-}
-
