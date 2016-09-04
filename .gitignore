@@ -1,1 +1,3 @@
 dist/**
+build/default/debug/src/**
+build/default/debug/production/**
