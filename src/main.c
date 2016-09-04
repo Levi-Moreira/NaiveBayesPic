@@ -47,13 +47,13 @@ void main()
     printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");
 
     /* Calculates Recall and Precision for classes */
-    calculateMetrics();
+//    calculateMetrics();
 
     /* Print confusion matrix for the model */
-    printConfusionMatrix();
+//    printConfusionMatrix();
 
     /* Show the metrics for the model */
-    printMetrics();
+//    printMetrics();
 
     /* Show off the prediction skills */
     showOff(0);

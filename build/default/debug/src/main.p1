@@ -84,12 +84,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.38\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"50 src/main.c
-[v _calculateMetrics `(i ~T0 @X0 0 ef ]
-"53
-[v _printConfusionMatrix `(i ~T0 @X0 0 ef ]
-"56
-[v _printMetrics `(i ~T0 @X0 0 ef ]
 "13 src/../include/extra.h
 [v _showOff `(v ~T0 @X0 0 ef1`i ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
@@ -8914,15 +8908,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 47: printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");
 "47
 [e ( _printf :s 1C ]
-[; ;main.c: 50: calculateMetrics();
-"50
-[e ( _calculateMetrics ..  ]
-[; ;main.c: 53: printConfusionMatrix();
-"53
-[e ( _printConfusionMatrix ..  ]
-[; ;main.c: 56: printMetrics();
-"56
-[e ( _printMetrics ..  ]
 [; ;main.c: 59: showOff(0);
 "59
 [e ( _showOff (1 -> 0 `i ]

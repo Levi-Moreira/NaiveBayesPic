@@ -6275,16 +6275,7 @@ init_uart();
 
 printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");
 
-
-calculateMetrics();
-
-
-printConfusionMatrix();
-
-
-printMetrics();
-
-
+# 59
 showOff(0);
 
 while(1);
