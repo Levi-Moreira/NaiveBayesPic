@@ -1,6 +1,5 @@
 #define _XTAL_FREQ 20000000
 #include <xc.h>
-#include <plib/usart.h>
 #include <math.h>
 #include <stdio.h>
 #include "../include/extra.h"
@@ -20,43 +19,25 @@
 #pragma config LVP      = OFF   /// DISABLE LOW VOLTAGE PROGRAM (ICSP DISABLE)
 //END CONFIG
 
-unsigned char UART1Config = 0, baud = 0;
 
-void putch(unsigned char data) {
-    while( ! PIR1bits.TXIF)          // wait until the transmitter is ready
-        continue;
-    TXREG = data;                     // send one character
-}
-
-void init_uart(void) {
-    TXSTAbits.TXEN = 1;               // enable transmitter
-    RCSTAbits.SPEN = 1;               // enable serial port
+void main() {
     
-    UART1Config = USART_TX_INT_OFF & USART_RX_INT_OFF & USART_ASYNCH_MODE & USART_EIGHT_BIT & USART_BRGH_HIGH ;
-    baud = 129;
-    OpenUSART(UART1Config,baud);
-
-}
-
-void main()
-{
     init_uart();
-    
-    //srand(time(NULL));
+    init_adc();
     
     printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");
 
     /* Calculates Recall and Precision for classes */
-    calculateMetrics();
+//    calculateMetrics();
 
     /* Print confusion matrix for the model */
-    printConfusionMatrix();
+//    printConfusionMatrix();
 
     /* Show the metrics for the model */
-    printMetrics();
+//    printMetrics();
 
     /* Show off the prediction skills */
-    showOff(0);
+    showOff(randomNumber());
     
     while(1);
 }

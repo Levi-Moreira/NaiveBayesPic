@@ -26,18 +26,10 @@
 float calculateProbability(float x, float mean, float stdev)
 {
     float number = x - mean;
-    
     float power  = -(number*number)/(2*stdev*stdev);
-    
-    //double exponent = pow(EULER,power);
-    
-    //double res = (exponent/(SQRT2PI * stdev));
-    
     double res = ((SQRT2PI * stdev));
-    
-   // float res = 
-    
-     return power-log(res);
+     
+    return power-log(res);
     
 }
 
@@ -145,25 +137,6 @@ void calculateMetrics()
  * */
 float getAccuracy() {
 
-    //int i;
-
-    /*  Number of correct predictions */
-    //int correct = 0;
-
-    /*  Holds the current prediction on the loop */
-    //int prediction;
-
-    //for(i = 0; i < TEST_LINES; i++) {
-      //  prediction = predict(testSet[i]); /*  Gets the prediction for a given test set line */
-	
-        //if(prediction == (int) testSet[i][COLUMNS - 1]) { /*  Checks if the prediction hits */
-          //  correct++;
-        //}
-    //}
-
-    /*  Returns the percentage of hits */
-    //return (((float) correct) / TEST_LINES) * 100;
-    
     int i;
     int sum = 0;
     for(i = 0; i<CLASSES;i++)

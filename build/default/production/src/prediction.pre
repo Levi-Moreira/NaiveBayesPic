@@ -64,7 +64,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 22 "src/../include/defines.h"
+# 24 "src/../include/defines.h"
 const float testSet[30][77] = {
 {0.302554, 0.499567, 0.417110, 0.214658, 0.261253, 0.161250, 0.267499, 0.408262, 0.266355, 0.093450, 0.198923, 0.244512, 0.154362, 0.181561, 0.158438, 0.163841, 0.103792, 0.111827, 0.078516, 0.109500, 0.085235, 0.114423, 0.046118, 0.108259, 0.125351, 0.134804, 0.021917, 0.086917, 0.106584, 0.109650, 0.019872, 0.098188, 0.105602, 0.097431, 0.055097, 0.105278, 0.091757, 0.075744, 0.097751, 0.097821, 0.072337, 0.050805, 0.102967, 0.092413, 0.095251, 0.030853, 0.113065, 0.115581, 0.075330, 0.136403, 0.101787, 0.033061, 0.160344, 0.046673, 0.038749, 0.091932, 0.060722, 0.074302, 0.159511, 0.194976, 0.118864, 0.182096, 0.160625, 0.045292, 0.143718, 0.092849, 0.154306, 0.287075, 0.048004, 0.358809, 0.314393, 0.313134, 0.428668, 0.384573, 0.187002, 0.106319, 7.000000},
 {0.030761, 0.327770, 0.142385, 0.210519, 0.503095, 0.094814, 0.491849, 0.070052, 0.356141, 0.147579, 0.088749, 0.117369, 0.065108, 0.287177, 0.067052, 0.078639, 0.202142, 0.068877, 0.110739, 0.148803, 0.084723, 0.037659, 0.033453, 0.162692, 0.023239, 0.009819, 0.118992, 0.114477, 0.028022, 0.099119, 0.113058, 0.013922, 0.042081, 0.090740, 0.011169, 0.044268, 0.068876, 0.105063, 0.020254, 0.047619, 0.120422, 0.013239, 0.057800, 0.075264, 0.067461, 0.023264, 0.065174, 0.053966, 0.090264, 0.077308, 0.050431, 0.043467, 0.026237, 0.040131, 0.077094, 0.079576, 0.092501, 0.125416, 0.029354, 0.059447, 0.046074, 0.011697, 0.124910, 0.073766, 0.110562, 0.137878, 0.090909, 0.018480, 0.070281, 0.148691, 0.175931, 0.199014, 0.157830, 0.387621, 0.094020, 0.288406, 0.000000},
@@ -157,20 +157,15 @@ extern double round(double);
 # 26 "src/prediction.c"
 float calculateProbability(float x, float mean, float stdev)
 {
-double exponent = exp(-(pow(x-mean,2)/(2*pow(stdev,2))));
+float number = x - mean;
+float power = -(number*number)/(2*stdev*stdev);
+double res = ((2.506628 * stdev));
 
-double res = (1 / (sqrt(2*3.141592653589793) * stdev)) * exponent;
-if(res == 0.0)
-{
-return 0.0;
-}
-else
-{
-return log(res);
-}
+return power-log(res);
+
 }
 
-# 47
+# 42
 float calculateClassProbability(int classNumber, float *inputVector)
 {
 int i;
@@ -185,12 +180,12 @@ classProbability+=calculateProbability(inputVector[i], means[classNumber][i], st
 
 }
 
+return classProbability;
 
-return 1;
 
 }
 
-# 78
+# 73
 int predict(float *inputVector) {
 
 int i;
@@ -207,17 +202,19 @@ int bestLabel = -1;
 for(i = 0; i < 10; i++) {
 classProb = calculateClassProbability(i, inputVector);
 
+printf("Prob: %f ", classProb);
 if((bestLabel==-1) || (classProb > bestProb)) {
 bestProb = classProb;
 bestLabel = i;
 }
 }
+printf("\n\n");
 
 return bestLabel;
 
 }
 
-# 114
+# 111
 void calculateMetrics()
 {
 
@@ -233,16 +230,16 @@ confusionMatrix[i][j] = 0;
 int prediction;
 
 for(i = 0; i < 30; i++) {
+printf("Test line #%d\n",i);
 prediction = predict(testSet[i]);
 confusionMatrix[(int)testSet[i][77-1]][prediction]++;
 }
 
 }
 
-# 140
+# 138
 float getAccuracy() {
 
-# 161
 int i;
 int sum = 0;
 for(i = 0; i<10;i++)
@@ -254,7 +251,7 @@ return (sum/(float)30);
 
 }
 
-# 180
+# 159
 float getRecall(int class)
 {
 int i;
@@ -267,7 +264,7 @@ sum+=confusionMatrix[class][i];
 return (confusionMatrix[class][class]/(float)sum);
 }
 
-# 199
+# 178
 float getPrecision(int class) {
 int i;
 int sum = 0;
@@ -278,7 +275,7 @@ sum+=confusionMatrix[i][class];
 return (confusionMatrix[class][class]/(float)sum);
 }
 
-# 213
+# 192
 void printMetrics()
 {
 printf("\n------------------Metrics for the Model---------------------------\n");
@@ -286,10 +283,10 @@ int i;
 for(i = 0; i<10; i++)
 {
 printf("Metrics for Class %d\n", i);
-printf("Precision %2.2f\n", getPrecision(i));
-printf("Recall %2.2f\n",getRecall(i) );
+printf("Precision %f\n", getPrecision(i));
+printf("Recall %f\n",getRecall(i) );
 printf("\n");
 }
 
-printf("\nModel Accuracy considering %d test entries: %f%%\n", getAccuracy(),30);
+printf("\nModel Accuracy considering %d test entries: %f%%\n", 30, getAccuracy());
 }
