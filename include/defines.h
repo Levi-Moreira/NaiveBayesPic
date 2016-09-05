@@ -11,6 +11,9 @@
 #define UNTITLED_DEFINES_H
 
 #define PI 3.141592653589793                    /**< The Pi constant. */
+#define SQRT2PI 2.506628
+#define EULER 2.7182818
+#define LOG10OF2 0.301029
 
 /**
  * MultiFeature dataset.

@@ -77,6 +77,6 @@ void printTestSetLine(int line)
     int i;
     for(i = 0; i<COLUMNS; i++)
     {
-        printf("%2.2f, ",testSet[line][i]);
+        printf("%f, ",testSet[line][i]);
     }
 }

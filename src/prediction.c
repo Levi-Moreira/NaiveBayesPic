@@ -25,17 +25,20 @@
  * */
 float calculateProbability(float x, float mean, float stdev)
 {
-    double exponent = exp(-(pow(x-mean,2)/(2*pow(stdev,2))));
+    float number = x - mean;
     
-    double res = (1 / (sqrt(2*PI) * stdev)) * exponent;
-    if(res == 0.0)
-    {
-     return 0.0;
-    }
-    else
-    {
-      return log(res);
-    }
+    float power  = -(number*number)/(2*stdev*stdev);
+    
+    //double exponent = pow(EULER,power);
+    
+    //double res = (exponent/(SQRT2PI * stdev));
+    
+    double res = ((SQRT2PI * stdev));
+    
+   // float res = 
+    
+     return power-log(res);
+    
 }
 
 
@@ -53,13 +56,13 @@ float calculateClassProbability(int classNumber, float *inputVector)
     {
         /*  considering the Bayes criterion, the total probability is the product of each single probability */
         classProbability+=calculateProbability(inputVector[i], means[classNumber][i], stdevs[classNumber][i] );
-//        printf("Class: %d\n", classNumber);
-//        printf("Column: %d\n", i);
-//        printf("Prob: %f\n\n", classProbability);
+       // printf("Class: %d\n", classNumber);
+       // printf("Column: %d\n", i);
+       
     }
 
-//    return classProbability;
-    return 1;
+    return classProbability;
+    //return 1;
 
 }
 
@@ -91,11 +94,13 @@ int predict(float *inputVector) {
     for(i = 0; i < CLASSES; i++) {
         classProb = calculateClassProbability(i, inputVector); /*  Calculating the probability for the current class on the loop */
 	
+        printf("Prob: %f ", classProb);
 	if((bestLabel==-1) || (classProb > bestProb)) { /*  Checking if the new class' probability is higher than the highest known probability */
             bestProb = classProb;
             bestLabel = i;  
         }
     }
+    printf("\n\n");
         
     return bestLabel;
 
@@ -126,6 +131,7 @@ void calculateMetrics()
     int prediction;
 
     for(i = 0; i < TEST_LINES; i++) {
+        printf("Test line #%d\n",i);
         prediction = predict(testSet[i]); /*  Gets the prediction for a given test set line */
         confusionMatrix[(int)testSet[i][COLUMNS-1]][prediction]++;
     }
@@ -139,24 +145,33 @@ void calculateMetrics()
  * */
 float getAccuracy() {
 
-    int i;
+    //int i;
 
     /*  Number of correct predictions */
-    int correct = 0;
+    //int correct = 0;
 
     /*  Holds the current prediction on the loop */
-    int prediction;
+    //int prediction;
 
-    for(i = 0; i < TEST_LINES; i++) {
-        prediction = predict(testSet[i]); /*  Gets the prediction for a given test set line */
+    //for(i = 0; i < TEST_LINES; i++) {
+      //  prediction = predict(testSet[i]); /*  Gets the prediction for a given test set line */
 	
-        if(prediction == (int) testSet[i][COLUMNS - 1]) { /*  Checks if the prediction hits */
-            correct++;
-        }
-    }
+        //if(prediction == (int) testSet[i][COLUMNS - 1]) { /*  Checks if the prediction hits */
+          //  correct++;
+        //}
+    //}
 
     /*  Returns the percentage of hits */
-    return (((float) correct) / TEST_LINES) * 100;
+    //return (((float) correct) / TEST_LINES) * 100;
+    
+    int i;
+    int sum = 0;
+    for(i = 0; i<CLASSES;i++)
+    {
+        sum+=confusionMatrix[i][i];
+    }
+
+    return (sum/(float)TEST_LINES);
 
 }
 
@@ -208,10 +223,10 @@ void printMetrics()
     for(i = 0; i<CLASSES; i++)
     {
         printf("Metrics for Class %d\n", i);
-        printf("Precision %2.2f\n", getPrecision(i));
-        printf("Recall %2.2f\n",getRecall(i) );
+        printf("Precision %f\n", getPrecision(i));
+        printf("Recall %f\n",getRecall(i) );
         printf("\n");
     }
 
-    printf("\nModel Accuracy considering %d test entries: %f%%\n", getAccuracy(),TEST_LINES);
+    printf("\nModel Accuracy considering %d test entries: %f%%\n", TEST_LINES, getAccuracy());
 }
