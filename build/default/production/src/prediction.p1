@@ -6167,12 +6167,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;prediction.c: 29: float power = -(number*number)/(2*stdev*stdev);
 [e = _power / -U * _number _number * * -> -> 2 `i `f _stdev _stdev ]
 "30
-[v _res `d ~T0 @X0 1 a ]
-[; ;prediction.c: 30: double res = ((2.506628 * stdev));
-[e = _res * .2.506628 -> _stdev `d ]
+[v _res `f ~T0 @X0 1 a ]
+[; ;prediction.c: 30: float res = ((2.506628 * stdev));
+[e = _res -> * .2.506628 -> _stdev `d `f ]
 [; ;prediction.c: 32: return power-log(res);
 "32
-[e ) -> - -> _power `d ( _log (1 _res `f ]
+[e ) -> - -> _power `d ( _log (1 -> _res `d `f ]
 [e $UE 2  ]
 [; ;prediction.c: 34: }
 "34
@@ -6259,9 +6259,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;prediction.c: 87: classProb = calculateClassProbability(i, inputVector);
 "87
 [e = _classProb ( _calculateClassProbability (2 , _i _inputVector ]
-[; ;prediction.c: 89: printf("Prob: %f ", classProb);
+[; ;prediction.c: 89: printf("Prob for Class %d: %f\n",i, classProb);
 "89
-[e ( _printf , (. :s 1C -> _classProb `d ]
+[e ( _printf , , (. :s 1C _i -> _classProb `d ]
 [; ;prediction.c: 90: if((bestLabel==-1) || (classProb > bestProb)) {
 "90
 [e $ ! || == _bestLabel -U -> 1 `i > _classProb _bestProb 11  ]
@@ -6354,7 +6354,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 20  ]
 [e :U 19 ]
 {
-[; ;prediction.c: 126: printf("Test line #%d\n",i);
+[; ;prediction.c: 126: printf("Probabilities for Test line #%d\n",i);
 "126
 [e ( _printf , (. :s 3C _i ]
 [; ;prediction.c: 127: prediction = predict(testSet[i]);
@@ -6541,12 +6541,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;prediction.c: 199: printf("Precision %f\n", getPrecision(i));
 "199
 [e ( _printf , (. :s 6C -> ( _getPrecision (1 _i `d ]
-[; ;prediction.c: 200: printf("Recall %f\n",getRecall(i) );
+[; ;prediction.c: 200: printf("Recall %f\n\n",getRecall(i) );
 "200
 [e ( _printf , (. :s 7C -> ( _getRecall (1 _i `d ]
-[; ;prediction.c: 201: printf("\n");
-"201
-[e ( _printf :s 8C ]
 "202
 }
 "196
@@ -6558,18 +6555,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;prediction.c: 202: }
 [; ;prediction.c: 204: printf("\nModel Accuracy considering %d test entries: %f%%\n", 55, getAccuracy());
 "204
-[e ( _printf , , (. :s 9C -> 55 `i -> ( _getAccuracy ..  `d ]
+[e ( _printf , , (. :s 8C -> 55 `i -> ( _getAccuracy ..  `d ]
 [; ;prediction.c: 205: }
 "205
 [e :UE 34 ]
 }
 [p f _printf 9445504 ]
-[a 1C 80 114 111 98 58 32 37 102 32 0 ]
 [a 6C 80 114 101 99 105 115 105 111 110 32 37 102 10 0 ]
-[a 7C 82 101 99 97 108 108 32 37 102 10 0 ]
-[a 3C 84 101 115 116 32 108 105 110 101 32 35 37 100 10 0 ]
+[a 1C 80 114 111 98 32 102 111 114 32 67 108 97 115 115 32 37 100 58 32 37 102 10 0 ]
+[a 3C 80 114 111 98 97 98 105 108 105 116 105 101 115 32 102 111 114 32 84 101 115 116 32 108 105 110 101 32 35 37 100 10 0 ]
 [a 5C 77 101 116 114 105 99 115 32 102 111 114 32 67 108 97 115 115 32 37 100 10 0 ]
 [a 4C 10 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 77 101 116 114 105 99 115 32 102 111 114 32 116 104 101 32 77 111 100 101 108 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 0 ]
-[a 9C 10 77 111 100 101 108 32 65 99 99 117 114 97 99 121 32 99 111 110 115 105 100 101 114 105 110 103 32 37 100 32 116 101 115 116 32 101 110 116 114 105 101 115 58 32 37 102 37 37 10 0 ]
+[a 8C 10 77 111 100 101 108 32 65 99 99 117 114 97 99 121 32 99 111 110 115 105 100 101 114 105 110 103 32 37 100 32 116 101 115 116 32 101 110 116 114 105 101 115 58 32 37 102 37 37 10 0 ]
+[a 7C 82 101 99 97 108 108 32 37 102 10 10 0 ]
 [a 2C 10 10 0 ]
-[a 8C 10 0 ]

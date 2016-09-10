@@ -6144,53 +6144,49 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _testLine `i ~T0 @X0 1 r1 ]
 "20
 [f ]
-[; ;extra.c: 21: printf("\n---------------------------Prediction Demonstration----------------------");
+[; ;extra.c: 21: printf("\n---------------------------Prediction Demonstration----------------------\nShowing off the prediction skills in the input vector: \n");
 "21
 [e ( _printf :s 1C ]
-[; ;extra.c: 22: printf("\nShowing off the prediction skills in the input vector: \n");
+[; ;extra.c: 22: printTestSetLine(testLine);
 "22
-[e ( _printf :s 2C ]
-[; ;extra.c: 23: printTestSetLine(testLine);
-"23
 [e ( _printTestSetLine (1 _testLine ]
-"24
+"23
 [v _prediction `i ~T0 @X0 1 a ]
-[; ;extra.c: 24: int prediction = predict(testSet[testLine]);
+[; ;extra.c: 23: int prediction = predict(testSet[testLine]);
 [e = _prediction ( _predict (1 -> &U *U + &U _testSet * -> -> _testLine `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `*f ]
-[; ;extra.c: 25: printf("\nPredicted class %d\n",prediction );
+[; ;extra.c: 24: printf("\nPredicted class %d\n",prediction );
+"24
+[e ( _printf , (. :s 2C _prediction ]
+[; ;extra.c: 25: if(prediction==testSet[testLine][77-1])
 "25
-[e ( _printf , (. :s 3C _prediction ]
-[; ;extra.c: 26: if(prediction==testSet[testLine][77-1])
-"26
 [e $ ! == -> _prediction `f *U + &U *U + &U _testSet * -> -> _testLine `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux * -> -> - -> 77 `i -> 1 `i `ui `ux -> -> # *U &U *U + &U _testSet * -> -> _testLine `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `ui `ux 3  ]
-[; ;extra.c: 27: {
-"27
+[; ;extra.c: 26: {
+"26
 {
-[; ;extra.c: 28: printf("It's a hit :)\n");
+[; ;extra.c: 27: printf("It's a hit :)\n");
+"27
+[e ( _printf :s 3C ]
 "28
-[e ( _printf :s 4C ]
-"29
 }
-[; ;extra.c: 29: }else
+[; ;extra.c: 28: }else
 [e $U 4  ]
 [e :U 3 ]
-[; ;extra.c: 30: {
-"30
+[; ;extra.c: 29: {
+"29
 {
-[; ;extra.c: 31: printf("It's a miss :(\n");
+[; ;extra.c: 30: printf("It's a miss :(\n");
+"30
+[e ( _printf :s 4C ]
 "31
-[e ( _printf :s 5C ]
-"32
 }
 [e :U 4 ]
-[; ;extra.c: 32: }
-[; ;extra.c: 34: }
-"34
+[; ;extra.c: 31: }
+[; ;extra.c: 33: }
+"33
 [e :UE 2 ]
 }
 [p f _printf 8388736 ]
-[a 1C 10 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 80 114 101 100 105 99 116 105 111 110 32 68 101 109 111 110 115 116 114 97 116 105 111 110 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 0 ]
-[a 3C 10 80 114 101 100 105 99 116 101 100 32 99 108 97 115 115 32 37 100 10 0 ]
-[a 4C 73 116 39 115 32 97 32 104 105 116 32 58 41 10 0 ]
-[a 5C 73 116 39 115 32 97 32 109 105 115 115 32 58 40 10 0 ]
-[a 2C 10 83 104 111 119 105 110 103 32 111 102 102 32 116 104 101 32 112 114 101 100 105 99 116 105 111 110 32 115 107 105 108 108 115 32 105 110 32 116 104 101 32 105 110 112 117 116 32 118 101 99 116 111 114 58 32 10 0 ]
+[a 2C 10 80 114 101 100 105 99 116 101 100 32 99 108 97 115 115 32 37 100 10 0 ]
+[a 3C 73 116 39 115 32 97 32 104 105 116 32 58 41 10 0 ]
+[a 4C 73 116 39 115 32 97 32 109 105 115 115 32 58 40 10 0 ]
+[a 1C 10 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 80 114 101 100 105 99 116 105 111 110 32 68 101 109 111 110 115 116 114 97 116 105 111 110 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 83 104 111 119 105 110 103 32 111 102 102 32 116 104 101 32 112 114 101 100 105 99 116 105 111 110 32 115 107 105 108 108 115 32 105 110 32 116 104 101 32 105 110 112 117 116 32 118 101 99 116 111 114 58 32 10 0 ]

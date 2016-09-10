@@ -185,7 +185,7 @@ float calculateProbability(float x, float mean, float stdev)
 {
 float number = x - mean;
 float power = -(number*number)/(2*stdev*stdev);
-double res = ((2.506628 * stdev));
+float res = ((2.506628 * stdev));
 
 return power-log(res);
 
@@ -228,7 +228,7 @@ int bestLabel = -1;
 for(i = 0; i < 10; i++) {
 classProb = calculateClassProbability(i, inputVector);
 
-printf("Prob: %f ", classProb);
+printf("Prob for Class %d: %f\n",i, classProb);
 if((bestLabel==-1) || (classProb > bestProb)) {
 bestProb = classProb;
 bestLabel = i;
@@ -256,7 +256,7 @@ confusionMatrix[i][j] = 0;
 int prediction;
 
 for(i = 0; i < 55; i++) {
-printf("Test line #%d\n",i);
+printf("Probabilities for Test line #%d\n",i);
 prediction = predict(testSet[i]);
 confusionMatrix[(int)testSet[i][77-1]][prediction]++;
 }
@@ -310,8 +310,8 @@ for(i = 0; i<10; i++)
 {
 printf("Metrics for Class %d\n", i);
 printf("Precision %f\n", getPrecision(i));
-printf("Recall %f\n",getRecall(i) );
-printf("\n");
+printf("Recall %f\n\n",getRecall(i) );
+
 }
 
 printf("\nModel Accuracy considering %d test entries: %f%%\n", 55, getAccuracy());

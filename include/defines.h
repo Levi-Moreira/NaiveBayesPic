@@ -16,7 +16,7 @@
 /**
  * MultiFeature dataset.
  * */
-# define COLUMNS 77                              /**< The number of attributes in the current dataset plus a class column. */
+#define COLUMNS 77                              /**< The number of attributes in the current dataset plus a class column. */
 #define CLASSES 10                              /**< The number of classes in the dataset. */
 #define TEST_LINES 55                         /**< The number of lines in the test dataset. */
 

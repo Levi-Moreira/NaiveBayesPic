@@ -27,7 +27,7 @@ float calculateProbability(float x, float mean, float stdev)
 {
     float number = x - mean;
     float power  = -(number*number)/(2*stdev*stdev);
-    double res = ((SQRT2PI * stdev));
+    float res = ((SQRT2PI * stdev));
      
     return power-log(res);
     
@@ -86,8 +86,8 @@ int predict(float *inputVector) {
     for(i = 0; i < CLASSES; i++) {
         classProb = calculateClassProbability(i, inputVector); /*  Calculating the probability for the current class on the loop */
 	
-        printf("Prob: %f ", classProb);
-	if((bestLabel==-1) || (classProb > bestProb)) { /*  Checking if the new class' probability is higher than the highest known probability */
+        printf("Prob for Class %d: %f\n",i, classProb);
+        if((bestLabel==-1) || (classProb > bestProb)) { /*  Checking if the new class' probability is higher than the highest known probability */
             bestProb = classProb;
             bestLabel = i;  
         }
@@ -123,7 +123,7 @@ void calculateMetrics()
     int prediction;
 
     for(i = 0; i < TEST_LINES; i++) {
-        printf("Test line #%d\n",i);
+        printf("Probabilities for Test line #%d\n",i);
         prediction = predict(testSet[i]); /*  Gets the prediction for a given test set line */
         confusionMatrix[(int)testSet[i][COLUMNS-1]][prediction]++;
     }
@@ -197,8 +197,8 @@ void printMetrics()
     {
         printf("Metrics for Class %d\n", i);
         printf("Precision %f\n", getPrecision(i));
-        printf("Recall %f\n",getRecall(i) );
-        printf("\n");
+        printf("Recall %f\n\n",getRecall(i) );
+        //printf("\n");
     }
 
     printf("\nModel Accuracy considering %d test entries: %f%%\n", TEST_LINES, getAccuracy());

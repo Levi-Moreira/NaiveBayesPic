@@ -16,7 +16,7 @@
 #pragma config LPT1OSC  = OFF   /// TIMER1 LOW POWER OPERATION
 #pragma config PBADEN   = OFF   /// PORTB.RB0,1,2,3,4 AS I/O DIGITAL
 #pragma config STVREN   = ON    /// STACK FULL/UNDERFLOW CAUSE RESET
-#pragma config LVP      = OFF   /// DISABLE LOW VOLTAGE PROGRAM (ICSP DISABLE)
+#pragma config LVP      = OFF   /// DISABLE LOW VOLTAGE PROGRAM (ICSP DISABLE)*/
 //END CONFIG
 
 

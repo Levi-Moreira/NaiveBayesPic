@@ -10236,16 +10236,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;util.c: 52: {
 [e :U _printConfusionMatrix ]
 [f ]
-[; ;util.c: 53: printf("------------------Confusion Matrix for the Model------------------\n");
+[; ;util.c: 53: printf("------------------Confusion Matrix for the Model------------------\n          ");
 "53
 [e ( _printf :s 1C ]
 "54
 [v _i `i ~T0 @X0 1 a ]
 [v _j `i ~T0 @X0 1 a ]
 [; ;util.c: 54: int i, j;
-[; ;util.c: 56: printf("          ");
-"56
-[e ( _printf :s 2C ]
 [; ;util.c: 57: for(i = 0; i<10; i++)
 "57
 {
@@ -10258,7 +10255,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;util.c: 59: printf(" C%d   ",i);
 "59
-[e ( _printf , (. :s 3C _i ]
+[e ( _printf , (. :s 2C _i ]
 "60
 }
 "57
@@ -10270,7 +10267,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;util.c: 60: }
 [; ;util.c: 61: printf("\n");
 "61
-[e ( _printf :s 4C ]
+[e ( _printf :s 3C ]
 [; ;util.c: 62: for(i = 0; i<10;i++)
 "62
 {
@@ -10283,7 +10280,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;util.c: 64: printf("Class %d |",i);
 "64
-[e ( _printf , (. :s 5C _i ]
+[e ( _printf , (. :s 4C _i ]
 [; ;util.c: 65: for(j = 0; j<10;j++)
 "65
 {
@@ -10293,7 +10290,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "66
 [e :U 538 ]
 [; ;util.c: 66: printf("  %d   ",confusionMatrix[i][j] );
-[e ( _printf , (. :s 6C *U + &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _j `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux ]
+[e ( _printf , (. :s 5C *U + &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _j `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux ]
 "65
 [e ++ _j -> 1 `i ]
 [e $ < _j -> 10 `i 538  ]
@@ -10302,7 +10299,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [; ;util.c: 67: printf("\n");
 "67
-[e ( _printf :s 7C ]
+[e ( _printf :s 6C ]
 "68
 }
 "62
@@ -10342,7 +10339,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;util.c: 80: printf("%f, ",testSet[line][i]);
 "80
-[e ( _printf , (. :s 8C -> *U + &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `ui `ux `d ]
+[e ( _printf , (. :s 7C -> *U + &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `ui `ux `d ]
 "81
 }
 "78
@@ -10523,11 +10520,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 556 ]
 }
 [p f _printf 8396928 ]
-[a 5C 67 108 97 115 115 32 37 100 32 124 0 ]
-[a 8C 37 102 44 32 0 ]
-[a 3C 32 67 37 100 32 32 32 0 ]
-[a 6C 32 32 37 100 32 32 32 0 ]
-[a 2C 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 1C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 67 111 110 102 117 115 105 111 110 32 77 97 116 114 105 120 32 102 111 114 32 116 104 101 32 77 111 100 101 108 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 0 ]
-[a 4C 10 0 ]
-[a 7C 10 0 ]
+[a 4C 67 108 97 115 115 32 37 100 32 124 0 ]
+[a 7C 37 102 44 32 0 ]
+[a 2C 32 67 37 100 32 32 32 0 ]
+[a 5C 32 32 37 100 32 32 32 0 ]
+[a 1C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 67 111 110 102 117 115 105 111 110 32 77 97 116 114 105 120 32 102 111 114 32 116 104 101 32 77 111 100 101 108 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 3C 10 0 ]
+[a 6C 10 0 ]

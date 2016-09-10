@@ -5410,10 +5410,10 @@ void baudUSART ( unsigned char baudconfig);
 # 51 "src/util.c"
 void printConfusionMatrix()
 {
-printf("------------------Confusion Matrix for the Model------------------\n");
+printf("------------------Confusion Matrix for the Model------------------\n          ");
 int i, j;
 
-printf("          ");
+
 for(i = 0; i<10; i++)
 {
 printf(" C%d   ",i);

@@ -50,10 +50,10 @@
  * */
 void printConfusionMatrix()
 {
-    printf("------------------Confusion Matrix for the Model------------------\n");
+    printf("------------------Confusion Matrix for the Model------------------\n          ");
     int i, j;
 
-    printf("          ");
+    //printf("          ");
     for(i = 0; i<CLASSES; i++)
     {
 	printf(" C%d   ",i);

@@ -18,8 +18,7 @@
  * */
 void showOff(int testLine)
 {
-    printf("\n---------------------------Prediction Demonstration----------------------");
-    printf("\nShowing off the prediction skills in the input vector: \n");
+    printf("\n---------------------------Prediction Demonstration----------------------\nShowing off the prediction skills in the input vector: \n");
     printTestSetLine(testLine);
     int prediction = predict(testSet[testLine]);
     printf("\nPredicted class %d\n",prediction );
