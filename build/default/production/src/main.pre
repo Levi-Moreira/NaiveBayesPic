@@ -6169,9 +6169,6 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 13 "src/../include/extra.h"
-void showOff(int testLine);
-
 # 23 "src/../include/defines.h"
 const float testSet[55][77] = {
 {0.302554, 0.499567, 0.417110, 0.214658, 0.261253, 0.161250, 0.267499, 0.408262, 0.266355, 0.093450, 0.198923, 0.244512, 0.154362, 0.181561, 0.158438, 0.163841, 0.103792, 0.111827, 0.078516, 0.109500, 0.085235, 0.114423, 0.046118, 0.108259, 0.125351, 0.134804, 0.021917, 0.086917, 0.106584, 0.109650, 0.019872, 0.098188, 0.105602, 0.097431, 0.055097, 0.105278, 0.091757, 0.075744, 0.097751, 0.097821, 0.072337, 0.050805, 0.102967, 0.092413, 0.095251, 0.030853, 0.113065, 0.115581, 0.075330, 0.136403, 0.101787, 0.033061, 0.160344, 0.046673, 0.038749, 0.091932, 0.060722, 0.074302, 0.159511, 0.194976, 0.118864, 0.182096, 0.160625, 0.045292, 0.143718, 0.092849, 0.154306, 0.287075, 0.048004, 0.358809, 0.314393, 0.313134, 0.428668, 0.384573, 0.187002, 0.106319, 7.000000},
@@ -6259,6 +6256,21 @@ const float stdevs[10][77 - 1] = {
 
 # 243
 int confusionMatrix[10][10];
+
+# 13 "src/../include/support.h"
+float calculateProbability(float x, float mean, float stdev);
+float calculateClassProbability(int classNumber, float *inputVector);
+int predict(float *inputVector);
+float getAccuracy();
+float getPrecision(int class);
+float getRecall(int class);
+void calculateMetrics();
+void printMetrics();
+void printSummaries();
+void printTestset();
+void printConfusionMatrix();
+void printTestSetLine(int line);
+void showOff(int testLine);
 
 
 # 9 "src/main.c"

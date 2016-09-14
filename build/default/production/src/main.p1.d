@@ -2,4 +2,4 @@
  build/default/production/src/main.p1:  \
  src/main.c  \
 src/../include/defines.h  \
-src/../include/extra.h 
+src/../include/support.h 

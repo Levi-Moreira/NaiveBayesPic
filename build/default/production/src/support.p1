@@ -1,4 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"43 C:\Program Files (x86)\Microchip\xc8\v1.37\include\math.h
+[v _log `(d ~T0 @X0 0 ef1`d ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.37\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "4823 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic18f4550.h
@@ -123,13 +125,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 195: extern int printf(const char *, ...);
-[; ;util.h: 14: void printSummaries();
-[; ;util.h: 15: void printTestset();
-[; ;util.h: 16: void printConfusionMatrix();
-[; ;util.h: 17: void printTestSetLine(int line);
-[v F69 `Cf ~T0 @X0 -> 77 `i t ]
+[v F64 `Cf ~T0 @X0 -> 77 `i t ]
 "23 src/../include/defines.h
-[v _testSet `F69 ~T0 @X0 -> 55 `i e ]
+[v _testSet `F64 ~T0 @X0 -> 55 `i e ]
 [i _testSet
 :U ..
 :U ..
@@ -4591,9 +4589,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;defines.h: 77: {0.291071, 0.481067, 0.331140, 0.186349, 0.217919, 0.420198, 0.335512, 0.342336, 0.072114, 0.373434, 0.126369, 0.189760, 0.313785, 0.267103, 0.172228, 0.282050, 0.087721, 0.106901, 0.189616, 0.200612, 0.192237, 0.090704, 0.134247, 0.154791, 0.199605,
 [; ;defines.h: 78: {0.200774, 0.133560, 0.221453, 0.093534, 0.226886, 0.162872, 0.466623, 0.346618, 0.281582, 0.165962, 0.065250, 0.155296, 0.235713, 0.293096, 0.049862, 0.073307, 0.089099, 0.141982, 0.086846, 0.059621, 0.126968, 0.068185, 0.022465, 0.069305, 0.106226,
 [; ;defines.h: 79: };
-[v F71 `Cf ~T0 @X0 - -> 77 `i -> 1 `i t ]
+[v F66 `Cf ~T0 @X0 - -> 77 `i -> 1 `i t ]
 "81
-[v _means `F71 ~T0 @X0 -> 10 `i e ]
+[v _means `F66 ~T0 @X0 -> 10 `i e ]
 [i _means
 :U ..
 :U ..
@@ -5400,9 +5398,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;defines.h: 90: {0.152867, 0.134943, 0.118476, 0.273146, 0.186596, 0.113634, 0.330989, 0.141159, 0.284811, 0.117586, 0.088740, 0.093148, 0.093977, 0.138822, 0.079095, 0.079805, 0.094506, 0.072239, 0.101692, 0.089387, 0.076595, 0.073436, 0.066166, 0.071528, 0.077645,
 [; ;defines.h: 91: {0.257559, 0.254686, 0.323733, 0.195729, 0.357490, 0.146338, 0.393072, 0.313723, 0.276144, 0.127704, 0.183355, 0.194884, 0.215615, 0.157794, 0.138262, 0.122129, 0.118494, 0.199416, 0.121889, 0.129126, 0.112785, 0.118178, 0.118817, 0.132643, 0.101405,
 [; ;defines.h: 92: };
-[v F73 `Cf ~T0 @X0 - -> 77 `i -> 1 `i t ]
+[v F68 `Cf ~T0 @X0 - -> 77 `i -> 1 `i t ]
 "94
-[v _stdevs `F73 ~T0 @X0 -> 10 `i e ]
+[v _stdevs `F68 ~T0 @X0 -> 10 `i e ]
 [i _stdevs
 :U ..
 :U ..
@@ -6209,10 +6207,36 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;defines.h: 103: {0.054162, 0.094842, 0.063003, 0.083077, 0.108926, 0.032484, 0.061199, 0.064358, 0.066935, 0.071793, 0.029750, 0.052126, 0.047330, 0.066160, 0.037861, 0.033763, 0.055685, 0.040529, 0.045828, 0.036213, 0.033417, 0.038322, 0.035213, 0.037476, 0.036848,
 [; ;defines.h: 104: {0.074524, 0.081388, 0.066687, 0.074816, 0.119782, 0.058957, 0.080697, 0.096715, 0.079534, 0.072624, 0.103257, 0.057336, 0.081195, 0.081285, 0.068376, 0.062388, 0.061700, 0.087112, 0.052457, 0.061451, 0.047519, 0.053385, 0.069484, 0.074061, 0.044759,
 [; ;defines.h: 105: };
-[v F75 `i ~T0 @X0 -> 10 `i t ]
+[v F70 `i ~T0 @X0 -> 10 `i t ]
 "243
-[v _confusionMatrix `F75 ~T0 @X0 -> 10 `i e ]
+[v _confusionMatrix `F70 ~T0 @X0 -> 10 `i e ]
 [; ;defines.h: 243: int confusionMatrix[10][10];
+[; ;math.h: 30: extern double fabs(double);
+[; ;math.h: 31: extern double floor(double);
+[; ;math.h: 32: extern double ceil(double);
+[; ;math.h: 33: extern double modf(double, double *);
+[; ;math.h: 34: extern double sqrt(double);
+[; ;math.h: 35: extern double atof(const char *);
+[; ;math.h: 36: extern double sin(double) ;
+[; ;math.h: 37: extern double cos(double) ;
+[; ;math.h: 38: extern double tan(double) ;
+[; ;math.h: 39: extern double asin(double) ;
+[; ;math.h: 40: extern double acos(double) ;
+[; ;math.h: 41: extern double atan(double);
+[; ;math.h: 42: extern double atan2(double, double) ;
+[; ;math.h: 43: extern double log(double);
+[; ;math.h: 44: extern double log10(double);
+[; ;math.h: 45: extern double pow(double, double) ;
+[; ;math.h: 46: extern double exp(double) ;
+[; ;math.h: 47: extern double sinh(double) ;
+[; ;math.h: 48: extern double cosh(double) ;
+[; ;math.h: 49: extern double tanh(double);
+[; ;math.h: 50: extern double eval_poly(double, const double *, int);
+[; ;math.h: 51: extern double frexp(double, int *);
+[; ;math.h: 52: extern double ldexp(double, int);
+[; ;math.h: 53: extern double fmod(double, double);
+[; ;math.h: 54: extern double trunc(double);
+[; ;math.h: 55: extern double round(double);
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -10228,132 +10252,547 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;usart.h: 599: void putsUSART ( char *data);
 [; ;usart.h: 600: void putrsUSART ( const  char *data);
 [; ;usart.h: 654: void baudUSART ( unsigned char baudconfig);
-"51 src/util.c
-[v _printConfusionMatrix `(v ~T0 @X0 1 ef ]
-"52
+"26 src/support.c
+[v _calculateProbability `(f ~T0 @X0 1 ef3`f`f`f ]
+"27
 {
-[; ;util.c: 51: void printConfusionMatrix()
-[; ;util.c: 52: {
-[e :U _printConfusionMatrix ]
+[; ;support.c: 26: float calculateProbability(float x, float mean, float stdev)
+[; ;support.c: 27: {
+[e :U _calculateProbability ]
+"26
+[v _x `f ~T0 @X0 1 r1 ]
+[v _mean `f ~T0 @X0 1 r2 ]
+[v _stdev `f ~T0 @X0 1 r3 ]
+"27
 [f ]
-[; ;util.c: 53: printf("------------------Confusion Matrix for the Model------------------\n          ");
-"53
-[e ( _printf :s 1C ]
-"54
-[v _i `i ~T0 @X0 1 a ]
-[v _j `i ~T0 @X0 1 a ]
-[; ;util.c: 54: int i, j;
-[; ;util.c: 57: for(i = 0; i<10; i++)
-"57
-{
-[e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 532  ]
-[e $U 533  ]
-"58
-[e :U 532 ]
-[; ;util.c: 58: {
-{
-[; ;util.c: 59: printf(" C%d   ",i);
-"59
-[e ( _printf , (. :s 2C _i ]
-"60
-}
-"57
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 10 `i 532  ]
-[e :U 533 ]
-"60
-}
-[; ;util.c: 60: }
-[; ;util.c: 61: printf("\n");
-"61
-[e ( _printf :s 3C ]
-[; ;util.c: 62: for(i = 0; i<10;i++)
-"62
-{
-[e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 535  ]
-[e $U 536  ]
-"63
-[e :U 535 ]
-[; ;util.c: 63: {
-{
-[; ;util.c: 64: printf("Class %d |",i);
-"64
-[e ( _printf , (. :s 4C _i ]
-[; ;util.c: 65: for(j = 0; j<10;j++)
-"65
-{
-[e = _j -> 0 `i ]
-[e $ < _j -> 10 `i 538  ]
-[e $U 539  ]
-"66
-[e :U 538 ]
-[; ;util.c: 66: printf("  %d   ",confusionMatrix[i][j] );
-[e ( _printf , (. :s 5C *U + &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _j `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux ]
-"65
-[e ++ _j -> 1 `i ]
-[e $ < _j -> 10 `i 538  ]
-[e :U 539 ]
-"66
-}
-[; ;util.c: 67: printf("\n");
-"67
-[e ( _printf :s 6C ]
-"68
-}
-"62
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 10 `i 535  ]
-[e :U 536 ]
-"68
-}
-[; ;util.c: 68: }
-[; ;util.c: 69: }
-"69
+"28
+[v _number `f ~T0 @X0 1 a ]
+[; ;support.c: 28: float number = x - mean;
+[e = _number - _x _mean ]
+"29
+[v _power `f ~T0 @X0 1 a ]
+[; ;support.c: 29: float power = -(number*number)/(2*stdev*stdev);
+[e = _power / -U * _number _number * * -> -> 2 `i `f _stdev _stdev ]
+"30
+[v _res `f ~T0 @X0 1 a ]
+[; ;support.c: 30: float res = ((2.506628 * stdev));
+[e = _res -> * .2.506628 -> _stdev `d `f ]
+[; ;support.c: 32: return power-log(res);
+"32
+[e ) -> - -> _power `d ( _log (1 -> _res `d `f ]
+[e $UE 531  ]
+[; ;support.c: 34: }
+"34
 [e :UE 531 ]
 }
-"75
-[v _printTestSetLine `(v ~T0 @X0 1 ef1`i ]
-"76
+"42
+[v _calculateClassProbability `(f ~T0 @X0 1 ef2`i`*f ]
+"43
 {
-[; ;util.c: 75: void printTestSetLine(int line)
-[; ;util.c: 76: {
-[e :U _printTestSetLine ]
-"75
-[v _line `i ~T0 @X0 1 r1 ]
-"76
+[; ;support.c: 42: float calculateClassProbability(int classNumber, float *inputVector)
+[; ;support.c: 43: {
+[e :U _calculateClassProbability ]
+"42
+[v _classNumber `i ~T0 @X0 1 r1 ]
+[v _inputVector `*f ~T0 @X0 1 r2 ]
+"43
 [f ]
-"77
+"44
 [v _i `i ~T0 @X0 1 a ]
-[; ;util.c: 77: int i;
-[; ;util.c: 78: for(i = 0; i<77; i++)
-"78
+"45
+[v _classProbability `f ~T0 @X0 1 a ]
+[; ;support.c: 44: int i;
+[; ;support.c: 45: float classProbability = 0;
+[e = _classProbability -> -> 0 `i `f ]
+[; ;support.c: 47: for(i = 0; i<77-1; i++)
+"47
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 77 `i 542  ]
-[e $U 543  ]
-"79
-[e :U 542 ]
-[; ;util.c: 79: {
+[e $ < _i - -> 77 `i -> 1 `i 533  ]
+[e $U 534  ]
+"48
+[e :U 533 ]
+[; ;support.c: 48: {
 {
-[; ;util.c: 80: printf("%f, ",testSet[line][i]);
-"80
-[e ( _printf , (. :s 7C -> *U + &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `ui `ux `d ]
-"81
+[; ;support.c: 50: classProbability+=calculateProbability(inputVector[i], means[classNumber][i], stdevs[classNumber][i] );
+"50
+[e =+ _classProbability ( _calculateProbability (3 , , *U + _inputVector * -> _i `x -> -> # *U _inputVector `i `x *U + &U *U + &U _means * -> -> _classNumber `ui `ux -> * -> # *U &U *U &U _means `ui -> - -> 77 `i -> 1 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _means * -> -> _classNumber `ui `ux -> * -> # *U &U *U &U _means `ui -> - -> 77 `i -> 1 `i `ui `ux `ui `ux *U + &U *U + &U _stdevs * -> -> _classNumber `ui `ux -> * -> # *U &U *U &U _stdevs `ui -> - -> 77 `i -> 1 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _stdevs * -> -> _classNumber `ui `ux -> * -> # *U &U *U &U _stdevs `ui -> - -> 77 `i -> 1 `i `ui `ux `ui `ux ]
+"54
 }
-"78
+"47
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 77 `i 542  ]
-[e :U 543 ]
-"81
+[e $ < _i - -> 77 `i -> 1 `i 533  ]
+[e :U 534 ]
+"54
 }
-[; ;util.c: 81: }
-[; ;util.c: 82: }
-"82
+[; ;support.c: 54: }
+[; ;support.c: 56: return classProbability;
+"56
+[e ) _classProbability ]
+[e $UE 532  ]
+[; ;support.c: 59: }
+"59
+[e :UE 532 ]
+}
+"73
+[v _predict `(i ~T0 @X0 1 ef1`*f ]
+{
+[; ;support.c: 73: int predict(float *inputVector) {
+[e :U _predict ]
+[v _inputVector `*f ~T0 @X0 1 r1 ]
+[f ]
+"75
+[v _i `i ~T0 @X0 1 a ]
+"78
+[v _classProb `f ~T0 @X0 1 a ]
+"81
+[v _bestProb `f ~T0 @X0 1 a ]
+[; ;support.c: 75: int i;
+[; ;support.c: 78: float classProb;
+[; ;support.c: 81: float bestProb = -1;
+[e = _bestProb -> -U -> 1 `i `f ]
+"84
+[v _bestLabel `i ~T0 @X0 1 a ]
+[; ;support.c: 84: int bestLabel = -1;
+[e = _bestLabel -U -> 1 `i ]
+[; ;support.c: 86: for(i = 0; i < 10; i++) {
+"86
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 537  ]
+[e $U 538  ]
+[e :U 537 ]
+{
+[; ;support.c: 87: classProb = calculateClassProbability(i, inputVector);
+"87
+[e = _classProb ( _calculateClassProbability (2 , _i _inputVector ]
+[; ;support.c: 89: printf("Prob for Class %d: %f\n",i, classProb);
+"89
+[e ( _printf , , (. :s 1C _i -> _classProb `d ]
+[; ;support.c: 90: if((bestLabel==-1) || (classProb > bestProb)) {
+"90
+[e $ ! || == _bestLabel -U -> 1 `i > _classProb _bestProb 540  ]
+{
+[; ;support.c: 91: bestProb = classProb;
+"91
+[e = _bestProb _classProb ]
+[; ;support.c: 92: bestLabel = i;
+"92
+[e = _bestLabel _i ]
+"93
+}
+[e :U 540 ]
+"94
+}
+"86
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 537  ]
+[e :U 538 ]
+"94
+}
+[; ;support.c: 93: }
+[; ;support.c: 94: }
+[; ;support.c: 95: printf("\n\n");
+"95
+[e ( _printf :s 2C ]
+[; ;support.c: 97: return bestLabel;
+"97
+[e ) _bestLabel ]
+[e $UE 536  ]
+[; ;support.c: 99: }
+"99
+[e :UE 536 ]
+}
+"111
+[v _calculateMetrics `(v ~T0 @X0 1 ef ]
+"112
+{
+[; ;support.c: 111: void calculateMetrics()
+[; ;support.c: 112: {
+[e :U _calculateMetrics ]
+[f ]
+"114
+[v _i `i ~T0 @X0 1 a ]
+[v _j `i ~T0 @X0 1 a ]
+[; ;support.c: 114: int i,j;
+[; ;support.c: 116: for(i = 0; i<10; i++)
+"116
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 542  ]
+[e $U 543  ]
+"117
+[e :U 542 ]
+[; ;support.c: 117: {
+{
+[; ;support.c: 118: for(j = 0; j<10; j++)
+"118
+{
+[e = _j -> 0 `i ]
+[e $ < _j -> 10 `i 545  ]
+[e $U 546  ]
+"119
+[e :U 545 ]
+[; ;support.c: 119: confusionMatrix[i][j] = 0;
+[e = *U + &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _j `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux -> 0 `i ]
+"118
+[e ++ _j -> 1 `i ]
+[e $ < _j -> 10 `i 545  ]
+[e :U 546 ]
+"119
+}
+"120
+}
+"116
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 542  ]
+[e :U 543 ]
+"120
+}
+"123
+[v _prediction `i ~T0 @X0 1 a ]
+[; ;support.c: 120: }
+[; ;support.c: 123: int prediction;
+[; ;support.c: 125: for(i = 0; i < 55; i++) {
+"125
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 55 `i 548  ]
+[e $U 549  ]
+[e :U 548 ]
+{
+[; ;support.c: 126: printf("Probabilities for Test line #%d\n",i);
+"126
+[e ( _printf , (. :s 3C _i ]
+[; ;support.c: 127: prediction = predict(testSet[i]);
+"127
+[e = _prediction ( _predict (1 -> &U *U + &U _testSet * -> -> _i `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `*f ]
+[; ;support.c: 128: confusionMatrix[(int)testSet[i][77-1]][prediction]++;
+"128
+[e ++ *U + &U *U + &U _confusionMatrix * -> -> -> *U + &U *U + &U _testSet * -> -> _i `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux * -> -> - -> 77 `i -> 1 `i `ui `ux -> -> # *U &U *U + &U _testSet * -> -> _i `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `ui `ux `i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _prediction `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> -> *U + &U *U + &U _testSet * -> -> _i `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux * -> -> - -> 77 `i -> 1 `i `ui `ux -> -> # *U &U *U + &U _testSet * -> -> _i `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `ui `ux `i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux -> 1 `i ]
+"129
+}
+"125
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 55 `i 548  ]
+[e :U 549 ]
+"129
+}
+[; ;support.c: 129: }
+[; ;support.c: 131: }
+"131
 [e :UE 541 ]
 }
-"84
+"138
+[v _getAccuracy `(f ~T0 @X0 1 ef ]
+{
+[; ;support.c: 138: float getAccuracy() {
+[e :U _getAccuracy ]
+[f ]
+"140
+[v _i `i ~T0 @X0 1 a ]
+"141
+[v _sum `i ~T0 @X0 1 a ]
+[; ;support.c: 140: int i;
+[; ;support.c: 141: int sum = 0;
+[e = _sum -> 0 `i ]
+[; ;support.c: 142: for(i = 0; i<10;i++)
+"142
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 552  ]
+[e $U 553  ]
+"143
+[e :U 552 ]
+[; ;support.c: 143: {
+{
+[; ;support.c: 144: sum+=confusionMatrix[i][i];
+"144
+[e =+ _sum *U + &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux ]
+"145
+}
+"142
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 552  ]
+[e :U 553 ]
+"145
+}
+[; ;support.c: 145: }
+[; ;support.c: 147: return (sum/(float)55);
+"147
+[e ) / -> _sum `f -> -> 55 `i `f ]
+[e $UE 551  ]
+[; ;support.c: 149: }
+"149
+[e :UE 551 ]
+}
+"159
+[v _getRecall `(f ~T0 @X0 1 ef1`i ]
+"160
+{
+[; ;support.c: 159: float getRecall(int class)
+[; ;support.c: 160: {
+[e :U _getRecall ]
+"159
+[v _class `i ~T0 @X0 1 r1 ]
+"160
+[f ]
+"161
+[v _i `i ~T0 @X0 1 a ]
+"162
+[v _sum `i ~T0 @X0 1 a ]
+[; ;support.c: 161: int i;
+[; ;support.c: 162: int sum = 0;
+[e = _sum -> 0 `i ]
+[; ;support.c: 163: for(i = 0; i<10;i++)
+"163
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 556  ]
+[e $U 557  ]
+"164
+[e :U 556 ]
+[; ;support.c: 164: {
+{
+[; ;support.c: 165: sum+=confusionMatrix[class][i];
+"165
+[e =+ _sum *U + &U *U + &U _confusionMatrix * -> -> _class `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _class `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux ]
+"166
+}
+"163
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 556  ]
+[e :U 557 ]
+"166
+}
+[; ;support.c: 166: }
+[; ;support.c: 168: return (confusionMatrix[class][class]/(float)sum);
+"168
+[e ) / -> *U + &U *U + &U _confusionMatrix * -> -> _class `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _class `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _class `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux `f -> _sum `f ]
+[e $UE 555  ]
+[; ;support.c: 169: }
+"169
+[e :UE 555 ]
+}
+"178
+[v _getPrecision `(f ~T0 @X0 1 ef1`i ]
+{
+[; ;support.c: 178: float getPrecision(int class) {
+[e :U _getPrecision ]
+[v _class `i ~T0 @X0 1 r1 ]
+[f ]
+"179
+[v _i `i ~T0 @X0 1 a ]
+"180
+[v _sum `i ~T0 @X0 1 a ]
+[; ;support.c: 179: int i;
+[; ;support.c: 180: int sum = 0;
+[e = _sum -> 0 `i ]
+[; ;support.c: 181: for(i = 0; i<10;i++)
+"181
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 560  ]
+[e $U 561  ]
+"182
+[e :U 560 ]
+[; ;support.c: 182: {
+{
+[; ;support.c: 183: sum+=confusionMatrix[i][class];
+"183
+[e =+ _sum *U + &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _class `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux ]
+"184
+}
+"181
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 560  ]
+[e :U 561 ]
+"184
+}
+[; ;support.c: 184: }
+[; ;support.c: 185: return (confusionMatrix[class][class]/(float)sum);
+"185
+[e ) / -> *U + &U *U + &U _confusionMatrix * -> -> _class `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _class `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _class `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux `f -> _sum `f ]
+[e $UE 559  ]
+[; ;support.c: 186: }
+"186
+[e :UE 559 ]
+}
+"192
+[v _printMetrics `(v ~T0 @X0 1 ef ]
+"193
+{
+[; ;support.c: 192: void printMetrics()
+[; ;support.c: 193: {
+[e :U _printMetrics ]
+[f ]
+[; ;support.c: 194: printf("\n------------------Metrics for the Model---------------------------\n");
+"194
+[e ( _printf :s 4C ]
+"195
+[v _i `i ~T0 @X0 1 a ]
+[; ;support.c: 195: int i;
+[; ;support.c: 196: for(i = 0; i<10; i++)
+"196
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 564  ]
+[e $U 565  ]
+"197
+[e :U 564 ]
+[; ;support.c: 197: {
+{
+[; ;support.c: 198: printf("Metrics for Class %d\n", i);
+"198
+[e ( _printf , (. :s 5C _i ]
+[; ;support.c: 199: printf("Precision %f\n", getPrecision(i));
+"199
+[e ( _printf , (. :s 6C -> ( _getPrecision (1 _i `d ]
+[; ;support.c: 200: printf("Recall %f\n\n",getRecall(i) );
+"200
+[e ( _printf , (. :s 7C -> ( _getRecall (1 _i `d ]
+"202
+}
+"196
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 564  ]
+[e :U 565 ]
+"202
+}
+[; ;support.c: 202: }
+[; ;support.c: 204: printf("\nModel Accuracy considering %d test entries: %f%%\n", 55, getAccuracy());
+"204
+[e ( _printf , , (. :s 8C -> 55 `i -> ( _getAccuracy ..  `d ]
+[; ;support.c: 205: }
+"205
+[e :UE 563 ]
+}
+"211
+[v _printConfusionMatrix `(v ~T0 @X0 1 ef ]
+"212
+{
+[; ;support.c: 211: void printConfusionMatrix()
+[; ;support.c: 212: {
+[e :U _printConfusionMatrix ]
+[f ]
+[; ;support.c: 213: printf("------------------Confusion Matrix for the Model------------------\n          ");
+"213
+[e ( _printf :s 9C ]
+"214
+[v _i `i ~T0 @X0 1 a ]
+[v _j `i ~T0 @X0 1 a ]
+[; ;support.c: 214: int i, j;
+[; ;support.c: 217: for(i = 0; i<10; i++)
+"217
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 568  ]
+[e $U 569  ]
+"218
+[e :U 568 ]
+[; ;support.c: 218: {
+{
+[; ;support.c: 219: printf(" C%d   ",i);
+"219
+[e ( _printf , (. :s 10C _i ]
+"220
+}
+"217
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 568  ]
+[e :U 569 ]
+"220
+}
+[; ;support.c: 220: }
+[; ;support.c: 221: printf("\n");
+"221
+[e ( _printf :s 11C ]
+[; ;support.c: 222: for(i = 0; i<10;i++)
+"222
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 571  ]
+[e $U 572  ]
+"223
+[e :U 571 ]
+[; ;support.c: 223: {
+{
+[; ;support.c: 224: printf("Class %d |",i);
+"224
+[e ( _printf , (. :s 12C _i ]
+[; ;support.c: 225: for(j = 0; j<10;j++)
+"225
+{
+[e = _j -> 0 `i ]
+[e $ < _j -> 10 `i 574  ]
+[e $U 575  ]
+"226
+[e :U 574 ]
+[; ;support.c: 226: printf("  %d   ",confusionMatrix[i][j] );
+[e ( _printf , (. :s 13C *U + &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _j `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux ]
+"225
+[e ++ _j -> 1 `i ]
+[e $ < _j -> 10 `i 574  ]
+[e :U 575 ]
+"226
+}
+[; ;support.c: 227: printf("\n");
+"227
+[e ( _printf :s 14C ]
+"228
+}
+"222
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 571  ]
+[e :U 572 ]
+"228
+}
+[; ;support.c: 228: }
+[; ;support.c: 229: }
+"229
+[e :UE 567 ]
+}
+"235
+[v _printTestSetLine `(v ~T0 @X0 1 ef1`i ]
+"236
+{
+[; ;support.c: 235: void printTestSetLine(int line)
+[; ;support.c: 236: {
+[e :U _printTestSetLine ]
+"235
+[v _line `i ~T0 @X0 1 r1 ]
+"236
+[f ]
+"237
+[v _i `i ~T0 @X0 1 a ]
+[; ;support.c: 237: int i;
+[; ;support.c: 238: for(i = 0; i<77; i++)
+"238
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 77 `i 578  ]
+[e $U 579  ]
+"239
+[e :U 578 ]
+[; ;support.c: 239: {
+{
+[; ;support.c: 240: printf("%f, ",testSet[line][i]);
+"240
+[e ( _printf , (. :s 15C -> *U + &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `ui `ux `d ]
+"241
+}
+"238
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 77 `i 578  ]
+[e :U 579 ]
+"241
+}
+[; ;support.c: 241: }
+[; ;support.c: 242: }
+"242
+[e :UE 577 ]
+}
+"244
 [v _UART1Config `uc ~T0 @X0 1 e ]
 [i _UART1Config
 -> -> 0 `i `uc
@@ -10362,168 +10801,232 @@ Version 3.2 HI-TECH Software Intermediate Code
 [i _baud
 -> -> 0 `i `uc
 ]
-[; ;util.c: 84: unsigned char UART1Config = 0, baud = 0;
-"86
+[; ;support.c: 244: unsigned char UART1Config = 0, baud = 0;
+"246
 [v _putch `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;util.c: 86: void putch(unsigned char data) {
+[; ;support.c: 246: void putch(unsigned char data) {
 [e :U _putch ]
 [v _data `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;util.c: 87: while( ! PIR1bits.TXIF)
-"87
-[e $U 546  ]
-[e :U 547 ]
-[; ;util.c: 88: continue;
-"88
-[e $U 546  ]
-[e :U 546 ]
-"87
-[e $ ! != -> . . _PIR1bits 0 4 `i -> -> -> 0 `i `Vuc `i 547  ]
-[e :U 548 ]
-[; ;util.c: 89: TXREG = data;
-"89
+[; ;support.c: 247: while( ! PIR1bits.TXIF)
+"247
+[e $U 582  ]
+[e :U 583 ]
+[; ;support.c: 248: continue;
+"248
+[e $U 582  ]
+[e :U 582 ]
+"247
+[e $ ! != -> . . _PIR1bits 0 4 `i -> -> -> 0 `i `Vuc `i 583  ]
+[e :U 584 ]
+[; ;support.c: 249: TXREG = data;
+"249
 [e = _TXREG _data ]
-[; ;util.c: 90: }
-"90
-[e :UE 545 ]
+[; ;support.c: 250: }
+"250
+[e :UE 581 ]
 }
-"92
+"252
 [v _init_uart `(v ~T0 @X0 1 ef ]
 {
-[; ;util.c: 92: void init_uart(void) {
+[; ;support.c: 252: void init_uart(void) {
 [e :U _init_uart ]
 [f ]
-[; ;util.c: 93: TXSTAbits.TXEN = 1;
-"93
+[; ;support.c: 253: TXSTAbits.TXEN = 1;
+"253
 [e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-[; ;util.c: 94: RCSTAbits.SPEN = 1;
-"94
+[; ;support.c: 254: RCSTAbits.SPEN = 1;
+"254
 [e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-[; ;util.c: 96: UART1Config = 0b01111111 & 0b10111111 & 0b11111110 & 0b11111101 & 0b11111111 ;
-"96
+[; ;support.c: 256: UART1Config = 0b01111111 & 0b10111111 & 0b11111110 & 0b11111101 & 0b11111111 ;
+"256
 [e = _UART1Config -> & & & & -> 127 `i -> 191 `i -> 254 `i -> 253 `i -> 255 `i `uc ]
-[; ;util.c: 97: baud = 129;
-"97
+[; ;support.c: 257: baud = 129;
+"257
 [e = _baud -> -> 129 `i `uc ]
-[; ;util.c: 98: OpenUSART(UART1Config,baud);
-"98
+[; ;support.c: 258: OpenUSART(UART1Config,baud);
+"258
 [e ( _OpenUSART (2 , _UART1Config -> _baud `ui ]
-[; ;util.c: 100: }
-"100
-[e :UE 549 ]
+[; ;support.c: 260: }
+"260
+[e :UE 585 ]
 }
-"102
+"262
 [v _init_adc `(v ~T0 @X0 1 ef ]
 {
-[; ;util.c: 102: void init_adc(void) {
+[; ;support.c: 262: void init_adc(void) {
 [e :U _init_adc ]
 [f ]
-[; ;util.c: 103: ADCON2= 0b10001010;
-"103
+[; ;support.c: 263: ADCON2= 0b10001010;
+"263
 [e = _ADCON2 -> -> 138 `i `uc ]
-[; ;util.c: 104: }
-"104
-[e :UE 550 ]
+[; ;support.c: 264: }
+"264
+[e :UE 586 ]
 }
-"106
+"266
 [v _ADCRead `(ui ~T0 @X0 1 ef1`uc ]
 {
-[; ;util.c: 106: unsigned int ADCRead(unsigned char ch) {
+[; ;support.c: 266: unsigned int ADCRead(unsigned char ch) {
 [e :U _ADCRead ]
 [v _ch `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;util.c: 108: if(ch>13) return 0;
-"108
-[e $ ! > -> _ch `i -> 13 `i 552  ]
+[; ;support.c: 268: if(ch>13) return 0;
+"268
+[e $ ! > -> _ch `i -> 13 `i 588  ]
 [e ) -> -> 0 `i `ui ]
-[e $UE 551  ]
-[e :U 552 ]
-[; ;util.c: 110: ADCON0=0x00;
-"110
+[e $UE 587  ]
+[e :U 588 ]
+[; ;support.c: 270: ADCON0=0x00;
+"270
 [e = _ADCON0 -> -> 0 `i `uc ]
-[; ;util.c: 111: ADCON0=(ch<<2);
-"111
+[; ;support.c: 271: ADCON0=(ch<<2);
+"271
 [e = _ADCON0 -> << -> _ch `i -> 2 `i `uc ]
-[; ;util.c: 112: ADON=1;
-"112
+[; ;support.c: 272: ADON=1;
+"272
 [e = _ADON -> -> 1 `i `b ]
-[; ;util.c: 113: GODONE=1;
-"113
+[; ;support.c: 273: GODONE=1;
+"273
 [e = _GODONE -> -> 1 `i `b ]
-[; ;util.c: 115: while(GODONE);
-"115
-[e $U 553  ]
-[e :U 554 ]
-[e :U 553 ]
-[e $ _GODONE 554  ]
-[e :U 555 ]
-[; ;util.c: 117: ADON=0;
-"117
+[; ;support.c: 275: while(GODONE);
+"275
+[e $U 589  ]
+[e :U 590 ]
+[e :U 589 ]
+[e $ _GODONE 590  ]
+[e :U 591 ]
+[; ;support.c: 277: ADON=0;
+"277
 [e = _ADON -> -> 0 `i `b ]
-[; ;util.c: 119: return ADRES;
-"119
+[; ;support.c: 279: return ADRES;
+"279
 [e ) -> _ADRES `ui ]
-[e $UE 551  ]
-[; ;util.c: 121: }
-"121
-[e :UE 551 ]
+[e $UE 587  ]
+[; ;support.c: 281: }
+"281
+[e :UE 587 ]
 }
-"123
+"283
 [v _randomNumber `(i ~T0 @X0 1 ef ]
 {
-[; ;util.c: 123: int randomNumber() {
+[; ;support.c: 283: int randomNumber() {
 [e :U _randomNumber ]
 [f ]
-"125
+"285
 [v _i `i ~T0 @X0 1 a ]
-"126
+"286
 [v _acc `i ~T0 @X0 1 a ]
-[; ;util.c: 125: int i;
-[; ;util.c: 126: int acc = 0;
+[; ;support.c: 285: int i;
+[; ;support.c: 286: int acc = 0;
 [e = _acc -> 0 `i ]
-"127
+"287
 [v _res `f ~T0 @X0 1 a ]
-[; ;util.c: 127: float res;
-[; ;util.c: 129: for(i = 0;i < 100; i++) {
-"129
+[; ;support.c: 287: float res;
+[; ;support.c: 289: for(i = 0;i < 100; i++) {
+"289
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 100 `i 557  ]
-[e $U 558  ]
-[e :U 557 ]
+[e $ < _i -> 100 `i 593  ]
+[e $U 594  ]
+[e :U 593 ]
 {
-[; ;util.c: 130: acc+=ADCRead(1);
-"130
+[; ;support.c: 290: acc+=ADCRead(1);
+"290
 [e =+ _acc -> ( _ADCRead (1 -> -> 1 `i `uc `i ]
-"131
+"291
 }
-"129
+"289
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 100 `i 557  ]
-[e :U 558 ]
-"131
+[e $ < _i -> 100 `i 593  ]
+[e :U 594 ]
+"291
 }
-[; ;util.c: 131: }
-[; ;util.c: 133: res = (acc/100.0 - (int)(acc/100.0))*100000;
-"133
+[; ;support.c: 291: }
+[; ;support.c: 293: res = (acc/100.0 - (int)(acc/100.0))*100000;
+"293
 [e = _res -> * - / -> _acc `d .100.0 -> -> / -> _acc `d .100.0 `i `d -> -> 100000 `l `d `f ]
-[; ;util.c: 134: res = ((int) res) % 55;
-"134
+[; ;support.c: 294: res = ((int) res) % 55;
+"294
 [e = _res -> % -> _res `i -> 55 `i `f ]
-[; ;util.c: 135: return (int) (res < 0 ? -res : res);
-"135
+[; ;support.c: 295: return (int) (res < 0 ? -res : res);
+"295
 [e ) -> ? < _res -> -> 0 `i `f : -U _res _res `i ]
-[e $UE 556  ]
-[; ;util.c: 137: }
-"137
-[e :UE 556 ]
+[e $UE 592  ]
+[; ;support.c: 297: }
+"297
+[e :UE 592 ]
 }
-[p f _printf 8396928 ]
-[a 4C 67 108 97 115 115 32 37 100 32 124 0 ]
-[a 7C 37 102 44 32 0 ]
-[a 2C 32 67 37 100 32 32 32 0 ]
-[a 5C 32 32 37 100 32 32 32 0 ]
-[a 1C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 67 111 110 102 117 115 105 111 110 32 77 97 116 114 105 120 32 102 111 114 32 116 104 101 32 77 111 100 101 108 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 3C 10 0 ]
-[a 6C 10 0 ]
+"304
+[v _showOff `(v ~T0 @X0 1 ef1`i ]
+"305
+{
+[; ;support.c: 304: void showOff(int testLine)
+[; ;support.c: 305: {
+[e :U _showOff ]
+"304
+[v _testLine `i ~T0 @X0 1 r1 ]
+"305
+[f ]
+[; ;support.c: 306: printf("\n---------------------------Prediction Demonstration----------------------\nShowing off the prediction skills in the input vector: \n");
+"306
+[e ( _printf :s 16C ]
+[; ;support.c: 307: printTestSetLine(testLine);
+"307
+[e ( _printTestSetLine (1 _testLine ]
+"308
+[v _prediction `i ~T0 @X0 1 a ]
+[; ;support.c: 308: int prediction = predict(testSet[testLine]);
+[e = _prediction ( _predict (1 -> &U *U + &U _testSet * -> -> _testLine `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `*f ]
+[; ;support.c: 309: printf("\nPredicted class %d\n",prediction );
+"309
+[e ( _printf , (. :s 17C _prediction ]
+[; ;support.c: 310: if(prediction==testSet[testLine][77-1])
+"310
+[e $ ! == -> _prediction `f *U + &U *U + &U _testSet * -> -> _testLine `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux * -> -> - -> 77 `i -> 1 `i `ui `ux -> -> # *U &U *U + &U _testSet * -> -> _testLine `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `ui `ux 597  ]
+[; ;support.c: 311: {
+"311
+{
+[; ;support.c: 312: printf("It's a hit :)\n");
+"312
+[e ( _printf :s 18C ]
+"313
+}
+[; ;support.c: 313: }else
+[e $U 598  ]
+[e :U 597 ]
+[; ;support.c: 314: {
+"314
+{
+[; ;support.c: 315: printf("It's a miss :(\n");
+"315
+[e ( _printf :s 19C ]
+"316
+}
+[e :U 598 ]
+[; ;support.c: 316: }
+[; ;support.c: 318: }
+"318
+[e :UE 596 ]
+}
+[p f _printf 9445504 ]
+[a 12C 67 108 97 115 115 32 37 100 32 124 0 ]
+[a 15C 37 102 44 32 0 ]
+[a 10C 32 67 37 100 32 32 32 0 ]
+[a 13C 32 32 37 100 32 32 32 0 ]
+[a 9C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 67 111 110 102 117 115 105 111 110 32 77 97 116 114 105 120 32 102 111 114 32 116 104 101 32 77 111 100 101 108 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 6C 80 114 101 99 105 115 105 111 110 32 37 102 10 0 ]
+[a 1C 80 114 111 98 32 102 111 114 32 67 108 97 115 115 32 37 100 58 32 37 102 10 0 ]
+[a 3C 80 114 111 98 97 98 105 108 105 116 105 101 115 32 102 111 114 32 84 101 115 116 32 108 105 110 101 32 35 37 100 10 0 ]
+[a 17C 10 80 114 101 100 105 99 116 101 100 32 99 108 97 115 115 32 37 100 10 0 ]
+[a 5C 77 101 116 114 105 99 115 32 102 111 114 32 67 108 97 115 115 32 37 100 10 0 ]
+[a 4C 10 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 77 101 116 114 105 99 115 32 102 111 114 32 116 104 101 32 77 111 100 101 108 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 0 ]
+[a 18C 73 116 39 115 32 97 32 104 105 116 32 58 41 10 0 ]
+[a 19C 73 116 39 115 32 97 32 109 105 115 115 32 58 40 10 0 ]
+[a 8C 10 77 111 100 101 108 32 65 99 99 117 114 97 99 121 32 99 111 110 115 105 100 101 114 105 110 103 32 37 100 32 116 101 115 116 32 101 110 116 114 105 101 115 58 32 37 102 37 37 10 0 ]
+[a 16C 10 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 80 114 101 100 105 99 116 105 111 110 32 68 101 109 111 110 115 116 114 97 116 105 111 110 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 83 104 111 119 105 110 103 32 111 102 102 32 116 104 101 32 112 114 101 100 105 99 116 105 111 110 32 115 107 105 108 108 115 32 105 110 32 116 104 101 32 105 110 112 117 116 32 118 101 99 116 111 114 58 32 10 0 ]
+[a 7C 82 101 99 97 108 108 32 37 102 10 10 0 ]
+[a 2C 10 10 0 ]
+[a 11C 10 0 ]
+[a 14C 10 0 ]

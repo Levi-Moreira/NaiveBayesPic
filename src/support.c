@@ -1,17 +1,17 @@
 /**
- * @file    prediction/prediction.c
+ * @file    support.c
  * @author  Alan Jeferson and Levi Moreira
  * @version V1.0
- * @date    23-August-2016
+ * @date    23-September-2016
  * @brief   This file contains functions that execute predictions, test accuracy etc
  *          on the knowledge (summaries) with the test data set.
  * */
 
 
-#include<stdio.h>
+#include <stdio.h>
 #include "../include/defines.h"
-#include "math.h"
-
+#include <math.h>
+#include <plib/usart.h>
 
 /**
  * @brief Calculates the probability of a given number belonging to a distribution based on the gaussian:
@@ -202,4 +202,117 @@ void printMetrics()
     }
 
     printf("\nModel Accuracy considering %d test entries: %f%%\n", TEST_LINES, getAccuracy());
+}
+
+
+/**
+ * @brief Prints the confusion matrix of the model.
+ * */
+void printConfusionMatrix()
+{
+    printf("------------------Confusion Matrix for the Model------------------\n          ");
+    int i, j;
+
+    //printf("          ");
+    for(i = 0; i<CLASSES; i++)
+    {
+	printf(" C%d   ",i);
+    }
+    printf("\n");
+    for(i = 0; i<CLASSES;i++)
+    {
+        printf("Class %d |",i);
+        for(j = 0; j<CLASSES;j++)
+            printf("  %d   ",confusionMatrix[i][j] );
+        printf("\n");
+    }
+}
+
+/**
+* @brief Prints a given line from the test set.
+* @param The line index to be printed.
+**/
+void printTestSetLine(int line)
+{
+    int i;
+    for(i = 0; i<COLUMNS; i++)
+    {
+        printf("%f, ",testSet[line][i]);
+    }
+}
+
+unsigned char UART1Config = 0, baud = 0;
+
+void putch(unsigned char data) {
+    while( ! PIR1bits.TXIF)          // wait until the transmitter is ready
+        continue;
+    TXREG = data;                     // send one character
+}
+
+void init_uart(void) {
+    TXSTAbits.TXEN = 1;               // enable transmitter
+    RCSTAbits.SPEN = 1;               // enable serial port
+    
+    UART1Config = USART_TX_INT_OFF & USART_RX_INT_OFF & USART_ASYNCH_MODE & USART_EIGHT_BIT & USART_BRGH_HIGH ;
+    baud = 129;
+    OpenUSART(UART1Config,baud);
+
+}
+
+void init_adc(void) {
+    ADCON2= 0b10001010;
+}
+
+unsigned int ADCRead(unsigned char ch) {
+    
+   if(ch>13) return 0;  //Invalid Channel
+   
+   ADCON0=0x00;
+   ADCON0=(ch<<2);   //Select ADC Channel
+   ADON=1;  //switch on the adc module
+   GODONE=1;  //Start conversion
+   
+   while(GODONE); //wait for the conversion to finish
+   
+   ADON=0;  //switch off adc
+
+   return ADRES;
+   
+}
+
+int randomNumber() {
+    
+    int i;
+    int acc = 0;
+    float res;
+    
+    for(i = 0;i < 100; i++) {
+        acc+=ADCRead(1);
+    }
+    
+    res = (acc/100.0 - (int)(acc/100.0))*100000;
+    res = ((int) res) % TEST_LINES;
+    return (int) (res < 0 ? -res : res);
+    
+}
+
+
+/**
+ * @brief Shows off the skill of the classifier by predicting the class of a certain entry.
+ * @param testLine The line of the test set to be predicted.
+ * */
+void showOff(int testLine)
+{
+    printf("\n---------------------------Prediction Demonstration----------------------\nShowing off the prediction skills in the input vector: \n");
+    printTestSetLine(testLine);
+    int prediction = predict(testSet[testLine]);
+    printf("\nPredicted class %d\n",prediction );
+    if(prediction==testSet[testLine][COLUMNS-1])
+    {
+        printf("It's a hit :)\n");
+    }else
+    {
+        printf("It's a miss :(\n");
+    }
+
 }

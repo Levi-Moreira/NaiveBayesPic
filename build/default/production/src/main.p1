@@ -6,13 +6,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _init_adc `(i ~T0 @X0 0 ef ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.37\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"31 src/main.c
-[v _calculateMetrics `(i ~T0 @X0 0 ef ]
-"34
-[v _printConfusionMatrix `(i ~T0 @X0 0 ef ]
-"37
-[v _printMetrics `(i ~T0 @X0 0 ef ]
-"13 src/../include/extra.h
+"19 src/../include/support.h
+[v _calculateMetrics `(v ~T0 @X0 0 ef ]
+"23
+[v _printConfusionMatrix `(v ~T0 @X0 0 ef ]
+"20
+[v _printMetrics `(v ~T0 @X0 0 ef ]
+"25
 [v _showOff `(v ~T0 @X0 0 ef1`i ]
 "40 src/main.c
 [v _randomNumber `(i ~T0 @X0 0 ef ]
@@ -4680,10 +4680,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 195: extern int printf(const char *, ...);
-[; ;extra.h: 13: void showOff(int testLine);
-[v F5165 `Cf ~T0 @X0 -> 77 `i t ]
+[v F5163 `Cf ~T0 @X0 -> 77 `i t ]
 "23 src/../include/defines.h
-[v _testSet `F5165 ~T0 @X0 -> 55 `i e ]
+[v _testSet `F5163 ~T0 @X0 -> 55 `i e ]
 [i _testSet
 :U ..
 :U ..
@@ -9145,9 +9144,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;defines.h: 77: {0.291071, 0.481067, 0.331140, 0.186349, 0.217919, 0.420198, 0.335512, 0.342336, 0.072114, 0.373434, 0.126369, 0.189760, 0.313785, 0.267103, 0.172228, 0.282050, 0.087721, 0.106901, 0.189616, 0.200612, 0.192237, 0.090704, 0.134247, 0.154791, 0.199605,
 [; ;defines.h: 78: {0.200774, 0.133560, 0.221453, 0.093534, 0.226886, 0.162872, 0.466623, 0.346618, 0.281582, 0.165962, 0.065250, 0.155296, 0.235713, 0.293096, 0.049862, 0.073307, 0.089099, 0.141982, 0.086846, 0.059621, 0.126968, 0.068185, 0.022465, 0.069305, 0.106226,
 [; ;defines.h: 79: };
-[v F5167 `Cf ~T0 @X0 - -> 77 `i -> 1 `i t ]
+[v F5165 `Cf ~T0 @X0 - -> 77 `i -> 1 `i t ]
 "81
-[v _means `F5167 ~T0 @X0 -> 10 `i e ]
+[v _means `F5165 ~T0 @X0 -> 10 `i e ]
 [i _means
 :U ..
 :U ..
@@ -9954,9 +9953,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;defines.h: 90: {0.152867, 0.134943, 0.118476, 0.273146, 0.186596, 0.113634, 0.330989, 0.141159, 0.284811, 0.117586, 0.088740, 0.093148, 0.093977, 0.138822, 0.079095, 0.079805, 0.094506, 0.072239, 0.101692, 0.089387, 0.076595, 0.073436, 0.066166, 0.071528, 0.077645,
 [; ;defines.h: 91: {0.257559, 0.254686, 0.323733, 0.195729, 0.357490, 0.146338, 0.393072, 0.313723, 0.276144, 0.127704, 0.183355, 0.194884, 0.215615, 0.157794, 0.138262, 0.122129, 0.118494, 0.199416, 0.121889, 0.129126, 0.112785, 0.118178, 0.118817, 0.132643, 0.101405,
 [; ;defines.h: 92: };
-[v F5169 `Cf ~T0 @X0 - -> 77 `i -> 1 `i t ]
+[v F5167 `Cf ~T0 @X0 - -> 77 `i -> 1 `i t ]
 "94
-[v _stdevs `F5169 ~T0 @X0 -> 10 `i e ]
+[v _stdevs `F5167 ~T0 @X0 -> 10 `i e ]
 [i _stdevs
 :U ..
 :U ..
@@ -10763,10 +10762,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;defines.h: 103: {0.054162, 0.094842, 0.063003, 0.083077, 0.108926, 0.032484, 0.061199, 0.064358, 0.066935, 0.071793, 0.029750, 0.052126, 0.047330, 0.066160, 0.037861, 0.033763, 0.055685, 0.040529, 0.045828, 0.036213, 0.033417, 0.038322, 0.035213, 0.037476, 0.036848,
 [; ;defines.h: 104: {0.074524, 0.081388, 0.066687, 0.074816, 0.119782, 0.058957, 0.080697, 0.096715, 0.079534, 0.072624, 0.103257, 0.057336, 0.081195, 0.081285, 0.068376, 0.062388, 0.061700, 0.087112, 0.052457, 0.061451, 0.047519, 0.053385, 0.069484, 0.074061, 0.044759,
 [; ;defines.h: 105: };
-[v F5171 `i ~T0 @X0 -> 10 `i t ]
+[v F5169 `i ~T0 @X0 -> 10 `i t ]
 "243
-[v _confusionMatrix `F5171 ~T0 @X0 -> 10 `i e ]
+[v _confusionMatrix `F5169 ~T0 @X0 -> 10 `i e ]
 [; ;defines.h: 243: int confusionMatrix[10][10];
+[; ;support.h: 13: float calculateProbability(float x, float mean, float stdev);
+[; ;support.h: 14: float calculateClassProbability(int classNumber, float *inputVector);
+[; ;support.h: 15: int predict(float *inputVector);
+[; ;support.h: 16: float getAccuracy();
+[; ;support.h: 17: float getPrecision(int class);
+[; ;support.h: 18: float getRecall(int class);
+[; ;support.h: 19: void calculateMetrics();
+[; ;support.h: 20: void printMetrics();
+[; ;support.h: 21: void printSummaries();
+[; ;support.h: 22: void printTestset();
+[; ;support.h: 23: void printConfusionMatrix();
+[; ;support.h: 24: void printTestSetLine(int line);
+[; ;support.h: 25: void showOff(int testLine);
 "9 src/main.c
 [p x FOSC=HS ]
 "10
