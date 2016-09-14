@@ -19,25 +19,67 @@
 #pragma config LVP      = OFF   /// DISABLE LOW VOLTAGE PROGRAM (ICSP DISABLE)*/
 //END CONFIG
 
+#define STRLEN 4
+
+volatile unsigned char t;
+volatile unsigned char rcindex = 0;
+volatile unsigned long int res = 0;
+volatile unsigned long int  result = 0;
+
+
+void interrupt ISR(void)
+{
+    
+    if (PIR1bits.RCIF)  // check if receive interrupt has fired
+    {
+        
+        printf("%c", RCREG);
+        
+        t = RCREG;      // read received character to buffer
+
+        if ( (t != '\n') && (rcindex < STRLEN) )
+        {
+            result = t;
+            result <<= (3-rcindex)*8;
+            res |= result;
+
+            rcindex++;          // increment string index
+
+        }
+        else
+        {
+            rcindex = 0;        // reset string index
+            printf("%lu",res);
+        }
+
+        PIR1bits.RCIF = 0;      // reset receive interrupt flag
+    }
+}
 
 void main() {
     
     init_uart();
-    init_adc();
+//    init_adc();
     
-    printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");
+    printf("Init complete!\n");
+    
+    INTCONbits.PEIE = 1;    // enable peripheral interrupts
+    INTCONbits.GIE = 1;     // enable interrupts
+    
+//    printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");
 
     /* Calculates Recall and Precision for classes */
-    calculateMetrics();
+//    calculateMetrics();
 
     /* Print confusion matrix for the model */
-    printConfusionMatrix();
+//    printConfusionMatrix();
 
     /* Show the metrics for the model */
-    printMetrics();
+//    printMetrics();
 
     /* Show off the prediction skills */
-    showOff(randomNumber());
+//    showOff(randomNumber());
     
-    while(1);
+    while(1) {
+    }
 }

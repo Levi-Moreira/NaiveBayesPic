@@ -81,7 +81,7 @@ void printTestSetLine(int line)
     }
 }
 
-unsigned char UART1Config = 0, baud = 0;
+//unsigned char UART1Config = 0, baud = 0;
 
 void putch(unsigned char data) {
     while( ! PIR1bits.TXIF)          // wait until the transmitter is ready
@@ -90,13 +90,19 @@ void putch(unsigned char data) {
 }
 
 void init_uart(void) {
-    TXSTAbits.TXEN = 1;               // enable transmitter
-    RCSTAbits.SPEN = 1;               // enable serial port
-    
-    UART1Config = USART_TX_INT_OFF & USART_RX_INT_OFF & USART_ASYNCH_MODE & USART_EIGHT_BIT & USART_BRGH_HIGH ;
-    baud = 129;
-    OpenUSART(UART1Config,baud);
+    TXSTAbits.TXEN = 1;     // enable transmitter
+    TXSTAbits.BRGH = 1;     // high baud rate mode
+    RCSTAbits.CREN = 1;     // enable continous receiving
 
+    // configure I/O pins
+    ADCON1 = 0xff;
+    TRISBbits.TRISB5 = 1;     // RX pin is input
+    TRISBbits.TRISB7 = 1;     // TX pin is input (automatically configured)
+
+    SPBRG = 129;            // set baud rate to 9600 baud (4MHz/(16*baudrate))-1
+
+    PIE1bits.RCIE = 1;      // enable USART receive interrupt
+    RCSTAbits.SPEN = 1;     // enable USART
 }
 
 void init_adc(void) {
