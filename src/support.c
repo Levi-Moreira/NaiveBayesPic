@@ -86,13 +86,13 @@ int predict(float *inputVector) {
     for(i = 0; i < CLASSES; i++) {
         classProb = calculateClassProbability(i, inputVector); /*  Calculating the probability for the current class on the loop */
 	
-        printf("Prob for Class %d: %f\n",i, classProb);
+        //printf("%f ",classProb);
         if((bestLabel==-1) || (classProb > bestProb)) { /*  Checking if the new class' probability is higher than the highest known probability */
             bestProb = classProb;
             bestLabel = i;  
         }
     }
-    printf("\n\n");
+    //printf("\n\n");
         
     return bestLabel;
 
@@ -123,7 +123,7 @@ void calculateMetrics()
     int prediction;
 
     for(i = 0; i < TEST_LINES; i++) {
-        printf("Probabilities for Test line #%d\n",i);
+       printf("Test line #%d\n",i);
         prediction = predict(testSet[i]); /*  Gets the prediction for a given test set line */
         confusionMatrix[(int)testSet[i][COLUMNS-1]][prediction]++;
     }

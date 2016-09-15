@@ -10366,9 +10366,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;support.c: 87: classProb = calculateClassProbability(i, inputVector);
 "87
 [e = _classProb ( _calculateClassProbability (2 , _i _inputVector ]
-[; ;support.c: 89: printf("Prob for Class %d: %f\n",i, classProb);
-"89
-[e ( _printf , , (. :s 1C _i -> _classProb `d ]
 [; ;support.c: 90: if((bestLabel==-1) || (classProb > bestProb)) {
 "90
 [e $ ! || == _bestLabel -U -> 1 `i > _classProb _bestProb 540  ]
@@ -10392,9 +10389,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [; ;support.c: 93: }
 [; ;support.c: 94: }
-[; ;support.c: 95: printf("\n\n");
-"95
-[e ( _printf :s 2C ]
 [; ;support.c: 97: return bestLabel;
 "97
 [e ) _bestLabel ]
@@ -10461,9 +10455,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 549  ]
 [e :U 548 ]
 {
-[; ;support.c: 126: printf("Probabilities for Test line #%d\n",i);
+[; ;support.c: 126: printf("Test line #%d\n",i);
 "126
-[e ( _printf , (. :s 3C _i ]
+[e ( _printf , (. :s 1C _i ]
 [; ;support.c: 127: prediction = predict(testSet[i]);
 "127
 [e = _prediction ( _predict (1 -> &U *U + &U _testSet * -> -> _i `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `*f ]
@@ -10628,7 +10622,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;support.c: 194: printf("\n------------------Metrics for the Model---------------------------\n");
 "194
-[e ( _printf :s 4C ]
+[e ( _printf :s 2C ]
 "195
 [v _i `i ~T0 @X0 1 a ]
 [; ;support.c: 195: int i;
@@ -10644,13 +10638,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;support.c: 198: printf("Metrics for Class %d\n", i);
 "198
-[e ( _printf , (. :s 5C _i ]
+[e ( _printf , (. :s 3C _i ]
 [; ;support.c: 199: printf("Precision %f\n", getPrecision(i));
 "199
-[e ( _printf , (. :s 6C -> ( _getPrecision (1 _i `d ]
+[e ( _printf , (. :s 4C -> ( _getPrecision (1 _i `d ]
 [; ;support.c: 200: printf("Recall %f\n\n",getRecall(i) );
 "200
-[e ( _printf , (. :s 7C -> ( _getRecall (1 _i `d ]
+[e ( _printf , (. :s 5C -> ( _getRecall (1 _i `d ]
 "202
 }
 "196
@@ -10662,7 +10656,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;support.c: 202: }
 [; ;support.c: 204: printf("\nModel Accuracy considering %d test entries: %f%%\n", 55, getAccuracy());
 "204
-[e ( _printf , , (. :s 8C -> 55 `i -> ( _getAccuracy ..  `d ]
+[e ( _printf , , (. :s 6C -> 55 `i -> ( _getAccuracy ..  `d ]
 [; ;support.c: 205: }
 "205
 [e :UE 563 ]
@@ -10677,7 +10671,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;support.c: 213: printf("------------------Confusion Matrix for the Model------------------\n          ");
 "213
-[e ( _printf :s 9C ]
+[e ( _printf :s 7C ]
 "214
 [v _i `i ~T0 @X0 1 a ]
 [v _j `i ~T0 @X0 1 a ]
@@ -10694,7 +10688,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;support.c: 219: printf(" C%d   ",i);
 "219
-[e ( _printf , (. :s 10C _i ]
+[e ( _printf , (. :s 8C _i ]
 "220
 }
 "217
@@ -10706,7 +10700,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;support.c: 220: }
 [; ;support.c: 221: printf("\n");
 "221
-[e ( _printf :s 11C ]
+[e ( _printf :s 9C ]
 [; ;support.c: 222: for(i = 0; i<10;i++)
 "222
 {
@@ -10719,7 +10713,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;support.c: 224: printf("Class %d |",i);
 "224
-[e ( _printf , (. :s 12C _i ]
+[e ( _printf , (. :s 10C _i ]
 [; ;support.c: 225: for(j = 0; j<10;j++)
 "225
 {
@@ -10729,7 +10723,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "226
 [e :U 574 ]
 [; ;support.c: 226: printf("  %d   ",confusionMatrix[i][j] );
-[e ( _printf , (. :s 13C *U + &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _j `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux ]
+[e ( _printf , (. :s 11C *U + &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux * -> -> _j `ui `ux -> -> # *U &U *U + &U _confusionMatrix * -> -> _i `ui `ux -> * -> # *U &U *U &U _confusionMatrix `ui -> -> 10 `i `ui `ux `ui `ux ]
 "225
 [e ++ _j -> 1 `i ]
 [e $ < _j -> 10 `i 574  ]
@@ -10738,7 +10732,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [; ;support.c: 227: printf("\n");
 "227
-[e ( _printf :s 14C ]
+[e ( _printf :s 12C ]
 "228
 }
 "222
@@ -10778,7 +10772,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;support.c: 240: printf("%f, ",testSet[line][i]);
 "240
-[e ( _printf , (. :s 15C -> *U + &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `ui `ux `d ]
+[e ( _printf , (. :s 13C -> *U + &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _testSet * -> -> _line `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `ui `ux `d ]
 "241
 }
 "238
@@ -10971,7 +10965,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;support.c: 306: printf("\n---------------------------Prediction Demonstration----------------------\nShowing off the prediction skills in the input vector: \n");
 "306
-[e ( _printf :s 16C ]
+[e ( _printf :s 14C ]
 [; ;support.c: 307: printTestSetLine(testLine);
 "307
 [e ( _printTestSetLine (1 _testLine ]
@@ -10981,7 +10975,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _prediction ( _predict (1 -> &U *U + &U _testSet * -> -> _testLine `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `*f ]
 [; ;support.c: 309: printf("\nPredicted class %d\n",prediction );
 "309
-[e ( _printf , (. :s 17C _prediction ]
+[e ( _printf , (. :s 15C _prediction ]
 [; ;support.c: 310: if(prediction==testSet[testLine][77-1])
 "310
 [e $ ! == -> _prediction `f *U + &U *U + &U _testSet * -> -> _testLine `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux * -> -> - -> 77 `i -> 1 `i `ui `ux -> -> # *U &U *U + &U _testSet * -> -> _testLine `ui `ux -> * -> # *U &U *U &U _testSet `ui -> -> 77 `i `ui `ux `ui `ux 597  ]
@@ -10990,7 +10984,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;support.c: 312: printf("It's a hit :)\n");
 "312
-[e ( _printf :s 18C ]
+[e ( _printf :s 16C ]
 "313
 }
 [; ;support.c: 313: }else
@@ -11001,7 +10995,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;support.c: 315: printf("It's a miss :(\n");
 "315
-[e ( _printf :s 19C ]
+[e ( _printf :s 17C ]
 "316
 }
 [e :U 598 ]
@@ -11011,22 +11005,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 596 ]
 }
 [p f _printf 9445504 ]
-[a 12C 67 108 97 115 115 32 37 100 32 124 0 ]
-[a 15C 37 102 44 32 0 ]
-[a 10C 32 67 37 100 32 32 32 0 ]
-[a 13C 32 32 37 100 32 32 32 0 ]
-[a 9C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 67 111 110 102 117 115 105 111 110 32 77 97 116 114 105 120 32 102 111 114 32 116 104 101 32 77 111 100 101 108 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 6C 80 114 101 99 105 115 105 111 110 32 37 102 10 0 ]
-[a 1C 80 114 111 98 32 102 111 114 32 67 108 97 115 115 32 37 100 58 32 37 102 10 0 ]
-[a 3C 80 114 111 98 97 98 105 108 105 116 105 101 115 32 102 111 114 32 84 101 115 116 32 108 105 110 101 32 35 37 100 10 0 ]
-[a 17C 10 80 114 101 100 105 99 116 101 100 32 99 108 97 115 115 32 37 100 10 0 ]
-[a 5C 77 101 116 114 105 99 115 32 102 111 114 32 67 108 97 115 115 32 37 100 10 0 ]
-[a 4C 10 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 77 101 116 114 105 99 115 32 102 111 114 32 116 104 101 32 77 111 100 101 108 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 0 ]
-[a 18C 73 116 39 115 32 97 32 104 105 116 32 58 41 10 0 ]
-[a 19C 73 116 39 115 32 97 32 109 105 115 115 32 58 40 10 0 ]
-[a 8C 10 77 111 100 101 108 32 65 99 99 117 114 97 99 121 32 99 111 110 115 105 100 101 114 105 110 103 32 37 100 32 116 101 115 116 32 101 110 116 114 105 101 115 58 32 37 102 37 37 10 0 ]
-[a 16C 10 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 80 114 101 100 105 99 116 105 111 110 32 68 101 109 111 110 115 116 114 97 116 105 111 110 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 83 104 111 119 105 110 103 32 111 102 102 32 116 104 101 32 112 114 101 100 105 99 116 105 111 110 32 115 107 105 108 108 115 32 105 110 32 116 104 101 32 105 110 112 117 116 32 118 101 99 116 111 114 58 32 10 0 ]
-[a 7C 82 101 99 97 108 108 32 37 102 10 10 0 ]
-[a 2C 10 10 0 ]
-[a 11C 10 0 ]
-[a 14C 10 0 ]
+[a 10C 67 108 97 115 115 32 37 100 32 124 0 ]
+[a 13C 37 102 44 32 0 ]
+[a 8C 32 67 37 100 32 32 32 0 ]
+[a 11C 32 32 37 100 32 32 32 0 ]
+[a 7C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 67 111 110 102 117 115 105 111 110 32 77 97 116 114 105 120 32 102 111 114 32 116 104 101 32 77 111 100 101 108 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 4C 80 114 101 99 105 115 105 111 110 32 37 102 10 0 ]
+[a 1C 84 101 115 116 32 108 105 110 101 32 35 37 100 10 0 ]
+[a 15C 10 80 114 101 100 105 99 116 101 100 32 99 108 97 115 115 32 37 100 10 0 ]
+[a 3C 77 101 116 114 105 99 115 32 102 111 114 32 67 108 97 115 115 32 37 100 10 0 ]
+[a 2C 10 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 77 101 116 114 105 99 115 32 102 111 114 32 116 104 101 32 77 111 100 101 108 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 0 ]
+[a 16C 73 116 39 115 32 97 32 104 105 116 32 58 41 10 0 ]
+[a 17C 73 116 39 115 32 97 32 109 105 115 115 32 58 40 10 0 ]
+[a 6C 10 77 111 100 101 108 32 65 99 99 117 114 97 99 121 32 99 111 110 115 105 100 101 114 105 110 103 32 37 100 32 116 101 115 116 32 101 110 116 114 105 101 115 58 32 37 102 37 37 10 0 ]
+[a 14C 10 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 80 114 101 100 105 99 116 105 111 110 32 68 101 109 111 110 115 116 114 97 116 105 111 110 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 10 83 104 111 119 105 110 103 32 111 102 102 32 116 104 101 32 112 114 101 100 105 99 116 105 111 110 32 115 107 105 108 108 115 32 105 110 32 116 104 101 32 105 110 112 117 116 32 118 101 99 116 111 114 58 32 10 0 ]
+[a 5C 82 101 99 97 108 108 32 37 102 10 10 0 ]
+[a 9C 10 0 ]
+[a 12C 10 0 ]
