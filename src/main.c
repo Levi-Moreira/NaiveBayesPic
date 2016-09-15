@@ -1,4 +1,5 @@
 #define _XTAL_FREQ 20000000
+
 #include <xc.h>
 #include <math.h>
 #include <stdio.h>
@@ -6,7 +7,7 @@
 #include "../include/support.h"
 
 // BEGIN CONFIG
-#pragma config FOSC     = HS    /// EXTERN CLOCK 8MHZ
+#pragma config FOSC     = HS    /// EXTERN CLOCK 20MHZ
 #pragma config IESO     = OFF   /// INTERNAL/EXTERNAL OSCILATOR DISABLE
 #pragma config PWRT     = OFF   /// DISABLE POWER-UP TIMER
 #pragma config BORV     = 3     /// BROWN-OUT RESET MINIMUM
@@ -22,7 +23,10 @@
 
 void main() {
     
+    /* Initilizes the UART for printing*/
     init_uart();
+    
+    /* Initilizes the ADC for random number generation*/
     init_adc();
     
     printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");

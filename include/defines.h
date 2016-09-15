@@ -11,7 +11,7 @@
 #define UNTITLED_DEFINES_H
 
 #define PI 3.141592653589793                    /**< The Pi constant. */
-#define SQRT2PI 2.506628
+#define SQRT2PI 2.506628                        /**< The Square Root of 2*Pi constant. */
 
 /**
  * MultiFeature dataset.

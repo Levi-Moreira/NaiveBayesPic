@@ -4,7 +4,8 @@
  * @version V1.0
  * @date    23-September-2016
  * @brief   This file contains functions that execute predictions, test accuracy etc
- *          on the knowledge (summaries) with the test data set.
+ *          on the knowledge (summaries) with the test data set. It also contains all functions
+ *          related to outputting the data to the user.
  * */
 
 
@@ -13,8 +14,15 @@
 #include <math.h>
 #include <plib/usart.h>
 
+
+
+/*--------------------------------------------------------------------------------------------------
+ * 
+ * PREDICTION FUNCTIONS
+ * 
+--------------------------------------------------------------------------------------------------*/
 /**
- * @brief Calculates the probability of a given number belonging to a distribution based on the gaussian:
+ * @brief Calculates the log (natural log) probability of a given number belonging to a distribution based on the gaussian:
  * @note p = 1/(sqrt(2*PI*stdev)) * e^-(((x- mean)^2)/(2*(stdev^2)))
  * Where stdev is the standard deviation of the column and class to which x belongs to.
  * Where mean is the mean of the column and class to which x belongs to.
@@ -35,6 +43,7 @@ float calculateProbability(float x, float mean, float stdev)
 
 /**
  * @brief Calculates the total probability of a certain class based on single probabilities yielded by each feature.
+ *        THe function will calculate the probability of each feature(column) from the input vector and add them together.
  * @param[in] int classNumber The class to be considered
  * @returns the cumulative probability of that class
  * */
@@ -57,7 +66,7 @@ float calculateClassProbability(int classNumber, float *inputVector)
 /**
  * @brief Predicts to which class the input vector belongs.
  *
- * Basically, runs over the probabilities for each class
+ * @note Basically, runs over the probabilities for each class
  * and returns the highest one.
  *
  * @param[in] float* inputVector The pointer to the vector to predict the class. The input vector
@@ -81,13 +90,13 @@ int predict(float *inputVector) {
     for(i = 0; i < CLASSES; i++) {
         classProb = calculateClassProbability(i, inputVector); /*  Calculating the probability for the current class on the loop */
 	
-        //printf("%f ",classProb);
+        printf("Proability for class %d: %f\n",i,classProb);
         if((bestLabel==-1) || (classProb > bestProb)) { /*  Checking if the new class' probability is higher than the highest known probability */
             bestProb = classProb;
             bestLabel = i;  
         }
     }
-    //printf("\n\n");
+    printf("\n\n");
         
     return bestLabel;
 
@@ -95,13 +104,14 @@ int predict(float *inputVector) {
 
 
 /**
- * @brief Fills in the values in the confusion matrix.
+ * @brief Fills in the values in the confusion matrix. 
  * @note The size of the Confusion Matrix is determined by the number of possible classes.
  * A confusion matrix for a 2 class model is:
  *                      Predicted Class 0           Predicted Class 1
  * Entry is of Class 0  True positives              False Negatives
  * Entry is of Class 1  False positives             True Negatives
- *
+ * The function will run over each entry of the testSet(row) and yeild the result of the prediction,
+ * it will then fill the confusion matrix with the result of the prediction
  * */
 void calculateMetrics()
 {
@@ -118,7 +128,7 @@ void calculateMetrics()
     int prediction;
 
     for(i = 0; i < TEST_LINES; i++) {
-       printf("Test line #%d\n",i);
+        printf("Test line #%d\n",i);
         prediction = predict(testSet[i]); /*  Gets the prediction for a given test set line */
         confusionMatrix[(int)testSet[i][COLUMNS-1]][prediction]++;
     }
@@ -127,7 +137,10 @@ void calculateMetrics()
 
 
 /**
- * @brief Makes predicions based on the test set and then calculate the percentage of hits.
+ * @brief Runs over the confusion matriz and calculates the accuracy of the model.
+ *        The accuracy of the model is the percntage of correct guesses it made, this is derived
+ *        from the confusion matriz by simply adding up the numbers in the main diagonal and
+ *        deviding by the total amount of elements in the matrix.
  * @returns The percentage of right predictions on the test set.
  * */
 float getAccuracy() {
@@ -149,7 +162,7 @@ float getAccuracy() {
  * @note The recall, or sensibility reveals the capability of the model to correclty predict a class in the cases
  * in which a data entry belongs to that class. Can the model identify when an instance belongs to a class?
  * @return The true positives over the sum of true positves and false negatives. For a multiclass problem the recall of a class i
- * will be M[i][i]/sumof elements of line i. M is the confusion matrix for the model.
+ * will be M[i][i]/sum of elements of line i. M is the confusion matrix for the model.
  * */
 float getRecall(int class)
 {
@@ -180,8 +193,36 @@ float getPrecision(int class) {
     return (confusionMatrix[class][class]/(float)sum);
 }
 
+
 /**
- * @brief print out the metrics (Recall, Precision and Accuracy for the model).
+ * @brief Shows off the skill of the classifier by predicting the class of a certain entry.
+ * @param testLine The line of the test set to be predicted.
+ * */
+void showOff(int testLine)
+{
+    printf("\n---------------------------Prediction Demonstration----------------------\nShowing off the prediction skills in the input vector: \n");
+    printTestSetLine(testLine);
+    int prediction = predict(testSet[testLine]);
+    printf("\nPredicted class %d\n",prediction );
+    if(prediction==testSet[testLine][COLUMNS-1])
+    {
+        printf("It's a hit :)\n");
+    }else
+    {
+        printf("It's a miss :(\n");
+    }
+
+}
+
+
+/*--------------------------------------------------------------------------------------------------
+ * 
+ * PRINTING FUNCTIONS
+ * 
+--------------------------------------------------------------------------------------------------*/
+
+/**
+ * @brief Print out the metrics (Recall, Precision and Accuracy for the model).
  * @note Please note that the Recall and Precision are printed by class and the Accuracy is for the whole model.
  * */
 void printMetrics()
@@ -224,7 +265,7 @@ void printConfusionMatrix()
 
 /**
 * @brief Prints a given line from the test set.
-* @param The line index to be printed.
+* @param The line index to be printed. Normally randomonly picked.
 **/
 void printTestSetLine(int line)
 {
@@ -236,79 +277,141 @@ void printTestSetLine(int line)
 }
 
 
+/**
+ * @brief Effectively prints out a byte in the USART interface.
+ * @note To make the printf function works by printing in the USART interface this function needed
+ *       to  be implemented, this funtions normally prints out the result in the screen. Note that
+ *       in this case it will use the TXREG to output the data therefore printing out in the USART
+ *       interface.
+ * @param data
+ */
+
+
+
+/*--------------------------------------------------------------------------------------------------
+ * 
+ * PERIPHERALS FUNCTIONS
+ * 
+--------------------------------------------------------------------------------------------------*/
 
 void putch(unsigned char data) {
-    while( ! PIR1bits.TXIF)          // wait until the transmitter is ready
+    /* wait until the transmitter is ready */
+    while( ! PIR1bits.TXIF)          
         continue;
-    TXREG = data;                     // send one character
+    /* Send the byte by putting it in the transmitter register*/
+    TXREG = data;                     
 }
 
+
+
+/** @brief Initilizes the usart interface.
+ *  @note The usart interface is needed for the outputting of the system results. 
+ *  Hence the need of this function.
+ **/
 void init_uart(void) {
+    
     unsigned char UART1Config = 0, baud = 0;
     
-    TXSTAbits.TXEN = 1;               // enable transmitter
-    RCSTAbits.SPEN = 1;               // enable serial port
+    /* Enable transmitter*/
+    TXSTAbits.TXEN = 1;  
+    
+    /* Enables serial port*/
+    RCSTAbits.SPEN = 1;               
+    
+    /**
+     * COnfigures the USART communication
+     * USART_TX_INT_OFF - Transmit interrupt is turned off
+     * USART_RX_INT_OFF - Receive interrupt is turned off
+     * USART_ASYNCH_MODE - USART is in asinc mode
+     * USART_EIGHT_BIT - Data has 8 bit
+     * USART_BRGH_HIGH - Will use high baud rate
+     */
     
     UART1Config = USART_TX_INT_OFF & USART_RX_INT_OFF & USART_ASYNCH_MODE & USART_EIGHT_BIT & USART_BRGH_HIGH ;
+   
+    /* Bauderate calculated*/
+    /**
+     * X = ((FOSC/Desired Baud Rate)/16) ? 1
+     * The desired baud rate is 9600, FOSC is 20000000 therefore the number is 129
+     */
     baud = 129;
+    
+    /* Start the USART with the above configuration*/
     OpenUSART(UART1Config,baud);
 
 }
 
+/**
+ * @brief Starts up the adc for capturing a reading from a pin
+ */
 void init_adc(void) {
-    ADCON2= 0b10001010;
+    /**
+     * bit7 - Result is right justified
+     * bit6 - Not implemented
+     * bit5-3 -2TAD is enough time with a 20MHZ cristal
+     * bit 2-0 - FOSC is devided by 16
+     */
+    ADCON2= 0b10001101;
 }
 
+/**
+ * @brief Read the data from a certain ADC chanel
+ * @param ch The channel fromwhich to read the data
+ * @return The data read from the channel, a integer number from 0 to 1023
+ */
 unsigned int ADCRead(unsigned char ch) {
     
-   if(ch>13) return 0;  //Invalid Channel
+   /* Verifies if it's a valid channel*/ 
+   if(ch>13) return 0;  
    
+   /* Clears Channel seletor register*/
    ADCON0=0x00;
-   ADCON0=(ch<<2);   //Select ADC Channel
-   ADON=1;  //switch on the adc module
-   GODONE=1;  //Start conversion
    
-   while(GODONE); //wait for the conversion to finish
+   /* The channel selection bits are bits 5-2, therefore we need to shift the input channel by two bits*/
+   ADCON0=(ch<<2);   
    
-   ADON=0;  //switch off adc
+   /* Switch on the ADC*/
+   ADON=1;  
+   
+   /*Let the conversion begin*/
+   GODONE=1;  
+   
+   /* Wait until it is ready*/
+   while(GODONE); 
+   
+   /*Switch off the ADC*/
+   ADON=0;  
 
+   /* Returns the data read*/
    return ADRES;
    
 }
 
+/**
+ * @brief Uses the ADC to select a random numer to be used as selector of a test line
+ * @note It will collect 100 readings and take the avarage of them.
+ *       It will then remove the floating point part of the number, normalize it and use as random number.
+ * @return A random number generated by the adc in the range 0-TestLines
+ */
 int randomNumber() {
     
     int i;
     int acc = 0;
     float res;
     
+    /* Collects 100 readings*/
     for(i = 0;i < 100; i++) {
         acc+=ADCRead(1);
     }
     
+    /* Removes the integer part of the number and turns it into a new integer number*/
     res = (acc/100.0 - (int)(acc/100.0))*100000;
+    
+    /* Normalize it to fit the range 0 - TESLINES*/
     res = ((int) res) % TEST_LINES;
+    
+    /* Sometimes the number is negative, takes care of this option*/
     return (int) (res < 0 ? -res : res);
     
 }
 
-
-/**
- * @brief Shows off the skill of the classifier by predicting the class of a certain entry.
- * @param testLine The line of the test set to be predicted.
- * */
-void showOff(int testLine)
-{
-    printf("\n---------------------------Prediction Demonstration----------------------\nShowing off the prediction skills in the input vector: \n");
-    printTestSetLine(testLine);
-    int prediction = predict(testSet[testLine]);
-    printf("\nPredicted class %d\n",prediction );
-    if(prediction==testSet[testLine][COLUMNS-1])
-    {
-        printf("It's a hit :)\n");
-    }else
-    {
-        printf("It's a miss :(\n");
-    }
-
-}
