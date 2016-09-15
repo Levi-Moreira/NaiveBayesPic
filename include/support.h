@@ -21,10 +21,14 @@ void  calculateMetrics();
 void  showOff(int testLine);
 
 /*Output functions*/
-void  printMetrics();
-void printSummaries();
-void printTestset();
+void printMetrics();
 void printConfusionMatrix();
-void printTestSetLine(int line);
+void printTestLine(int line);
 
+
+int randomNumber();
+unsigned int ADCRead(unsigned char ch);
+void init_adc(void);
+void init_uart(void);
+void putch(unsigned char data);
 #endif //UNTITLED_PREDICTION_H

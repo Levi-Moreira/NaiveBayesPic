@@ -152,6 +152,28 @@ const float stdevs[10][77 - 1] = {
 # 243
 int confusionMatrix[10][10];
 
+# 14 "src/../include/support.h"
+float calculateProbability(float x, float mean, float stdev);
+float calculateClassProbability(int classNumber, float *inputVector);
+int predict(float *inputVector);
+float getAccuracy();
+float getPrecision(int class);
+float getRecall(int class);
+void calculateMetrics();
+void showOff(int testLine);
+
+
+void printMetrics();
+void printConfusionMatrix();
+void printTestLine(int line);
+
+
+int randomNumber();
+unsigned int ADCRead(unsigned char ch);
+void init_adc(void);
+void init_uart(void);
+void putch(unsigned char data);
+
 # 30 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\math.h"
 extern double fabs(double);
 extern double floor(double);
@@ -5429,18 +5451,17 @@ void putrsUSART ( const  char *data);
 # 654
 void baudUSART ( unsigned char baudconfig);
 
-# 26 "src/support.c"
+# 35 "src/support.c"
 float calculateProbability(float x, float mean, float stdev)
 {
 float number = x - mean;
 float power = -(number*number)/(2*stdev*stdev);
 float res = ((2.506628 * stdev));
-
 return power-log(res);
 
 }
 
-# 42
+# 51
 float calculateClassProbability(int classNumber, float *inputVector)
 {
 int i;
@@ -5450,17 +5471,13 @@ for(i = 0; i<77-1; i++)
 {
 
 classProbability+=calculateProbability(inputVector[i], means[classNumber][i], stdevs[classNumber][i] );
-
-
-
 }
 
 return classProbability;
 
-
 }
 
-# 73
+# 78
 int predict(float *inputVector) {
 
 int i;
@@ -5477,19 +5494,19 @@ int bestLabel = -1;
 for(i = 0; i < 10; i++) {
 classProb = calculateClassProbability(i, inputVector);
 
-
+printf("Proability for class %d: %f\n",i,classProb);
 if((bestLabel==-1) || (classProb > bestProb)) {
 bestProb = classProb;
 bestLabel = i;
 }
 }
-
+printf("\n\n");
 
 return bestLabel;
 
 }
 
-# 111
+# 117
 void calculateMetrics()
 {
 
@@ -5512,7 +5529,7 @@ confusionMatrix[(int)testSet[i][77-1]][prediction]++;
 
 }
 
-# 138
+# 147
 float getAccuracy() {
 
 int i;
@@ -5526,7 +5543,7 @@ return (sum/(float)55);
 
 }
 
-# 159
+# 168
 float getRecall(int class)
 {
 int i;
@@ -5539,7 +5556,7 @@ sum+=confusionMatrix[class][i];
 return (confusionMatrix[class][class]/(float)sum);
 }
 
-# 178
+# 187
 float getPrecision(int class) {
 int i;
 int sum = 0;
@@ -5550,7 +5567,34 @@ sum+=confusionMatrix[i][class];
 return (confusionMatrix[class][class]/(float)sum);
 }
 
-# 192
+# 202
+void showOff(int testLine)
+{
+printf("\n---------------------------Prediction Demonstration----------------------\nShowing off the prediction skills in the input vector: \n");
+printTestLine(testLine);
+int prediction = predict(testSet[testLine]);
+printf("\nPredicted class %d\n",prediction );
+if(prediction==testSet[testLine][77-1])
+{
+printf("It's a hit :)\n");
+}else
+{
+printf("It's a miss :(\n");
+}
+
+}
+
+# 230
+void printTestLine(int line)
+{
+int i;
+for(i = 0; i<77; i++)
+{
+printf("%f, ",testSet[line][i]);
+}
+}
+
+# 242
 void printMetrics()
 {
 printf("\n------------------Metrics for the Model---------------------------\n");
@@ -5560,13 +5604,12 @@ for(i = 0; i<10; i++)
 printf("Metrics for Class %d\n", i);
 printf("Precision %f\n", getPrecision(i));
 printf("Recall %f\n\n",getRecall(i) );
-
 }
 
 printf("\nModel Accuracy considering %d test entries: %f%%\n", 55, getAccuracy());
 }
 
-# 211
+# 260
 void printConfusionMatrix()
 {
 printf("------------------Confusion Matrix for the Model------------------\n          ");
@@ -5587,84 +5630,93 @@ printf("\n");
 }
 }
 
-# 235
-void printTestSetLine(int line)
-{
-int i;
-for(i = 0; i<77; i++)
-{
-printf("%f, ",testSet[line][i]);
-}
-}
-
-unsigned char UART1Config = 0, baud = 0;
-
+# 298
 void putch(unsigned char data) {
+
 while( ! PIR1bits.TXIF)
 continue;
+
 TXREG = data;
 }
 
+# 312
 void init_uart(void) {
+
+unsigned char UART1Config = 0, baud = 0;
+
+
 TXSTAbits.TXEN = 1;
+
+
 RCSTAbits.SPEN = 1;
 
+# 331
 UART1Config = 0b01111111 & 0b10111111 & 0b11111110 & 0b11111101 & 0b11111111 ;
+
+# 338
 baud = 129;
+
+
 OpenUSART(UART1Config,baud);
 
 }
 
+# 348
 void init_adc(void) {
-ADCON2= 0b10001010;
+
+# 355
+ADCON2= 0b10001101;
 }
 
+# 363
 unsigned int ADCRead(unsigned char ch) {
+
 
 if(ch>13) return 0;
 
+
 ADCON0=0x00;
+
+
 ADCON0=(ch<<2);
+
+
 ADON=1;
+
+
 GODONE=1;
+
 
 while(GODONE);
 
+
 ADON=0;
+
 
 return ADRES;
 
 }
 
+# 397
 int randomNumber() {
 
 int i;
 int acc = 0;
 float res;
 
+
 for(i = 0;i < 100; i++) {
 acc+=ADCRead(1);
 }
 
+
 res = (acc/100.0 - (int)(acc/100.0))*100000;
+
+
 res = ((int) res) % 55;
+
+
 return (int) (res < 0 ? -res : res);
 
 }
 
-# 304
-void showOff(int testLine)
-{
-printf("\n---------------------------Prediction Demonstration----------------------\nShowing off the prediction skills in the input vector: \n");
-printTestSetLine(testLine);
-int prediction = predict(testSet[testLine]);
-printf("\nPredicted class %d\n",prediction );
-if(prediction==testSet[testLine][77-1])
-{
-printf("It's a hit :)\n");
-}else
-{
-printf("It's a miss :(\n");
-}
-
-}

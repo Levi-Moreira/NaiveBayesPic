@@ -6257,7 +6257,7 @@ const float stdevs[10][77 - 1] = {
 # 243
 int confusionMatrix[10][10];
 
-# 13 "src/../include/support.h"
+# 14 "src/../include/support.h"
 float calculateProbability(float x, float mean, float stdev);
 float calculateClassProbability(int classNumber, float *inputVector);
 int predict(float *inputVector);
@@ -6265,15 +6265,22 @@ float getAccuracy();
 float getPrecision(int class);
 float getRecall(int class);
 void calculateMetrics();
-void printMetrics();
-void printSummaries();
-void printTestset();
-void printConfusionMatrix();
-void printTestSetLine(int line);
 void showOff(int testLine);
 
 
-# 9 "src/main.c"
+void printMetrics();
+void printConfusionMatrix();
+void printTestLine(int line);
+
+
+int randomNumber();
+unsigned int ADCRead(unsigned char ch);
+void init_adc(void);
+void init_uart(void);
+void putch(unsigned char data);
+
+
+# 10 "src/main.c"
 #pragma config FOSC = HS
 #pragma config IESO = OFF
 #pragma config PWRT = OFF
@@ -6290,7 +6297,10 @@ void showOff(int testLine);
 
 void main() {
 
+
 init_uart();
+
+
 init_adc();
 
 printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");

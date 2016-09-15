@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "../include/defines.h"
+#include "../include/support.h"
 #include <math.h>
 #include <plib/usart.h>
 
@@ -201,7 +202,7 @@ float getPrecision(int class) {
 void showOff(int testLine)
 {
     printf("\n---------------------------Prediction Demonstration----------------------\nShowing off the prediction skills in the input vector: \n");
-    printTestSetLine(testLine);
+    printTestLine(testLine);
     int prediction = predict(testSet[testLine]);
     printf("\nPredicted class %d\n",prediction );
     if(prediction==testSet[testLine][COLUMNS-1])
@@ -221,6 +222,19 @@ void showOff(int testLine)
  * 
 --------------------------------------------------------------------------------------------------*/
 
+
+/**
+* @brief Prints a given line from the test set.
+* @param The line index to be printed. Normally randomonly picked.
+**/
+void printTestLine(int line)
+{
+    int i;
+    for(i = 0; i<COLUMNS; i++)
+    {
+        printf("%f, ",testSet[line][i]);
+    }
+}
 /**
  * @brief Print out the metrics (Recall, Precision and Accuracy for the model).
  * @note Please note that the Recall and Precision are printed by class and the Accuracy is for the whole model.
@@ -263,19 +277,13 @@ void printConfusionMatrix()
     }
 }
 
-/**
-* @brief Prints a given line from the test set.
-* @param The line index to be printed. Normally randomonly picked.
-**/
-void printTestSetLine(int line)
-{
-    int i;
-    for(i = 0; i<COLUMNS; i++)
-    {
-        printf("%f, ",testSet[line][i]);
-    }
-}
 
+
+/*--------------------------------------------------------------------------------------------------
+ * 
+ * PERIPHERALS FUNCTIONS
+ * 
+--------------------------------------------------------------------------------------------------*/
 
 /**
  * @brief Effectively prints out a byte in the USART interface.
@@ -286,13 +294,6 @@ void printTestSetLine(int line)
  * @param data
  */
 
-
-
-/*--------------------------------------------------------------------------------------------------
- * 
- * PERIPHERALS FUNCTIONS
- * 
---------------------------------------------------------------------------------------------------*/
 
 void putch(unsigned char data) {
     /* wait until the transmitter is ready */

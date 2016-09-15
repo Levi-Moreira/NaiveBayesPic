@@ -2,19 +2,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "12 C:\Program Files (x86)\Microchip\xc8\v1.37\include\conio.h
 [v _init_uart `(v ~T0 @X0 0 ef ]
-"26 src/main.c
-[v _init_adc `(i ~T0 @X0 0 ef ]
+"31 src/../include/support.h
+[v _init_adc `(v ~T0 @X0 0 ef ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.37\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"19 src/../include/support.h
+"20 src/../include/support.h
 [v _calculateMetrics `(v ~T0 @X0 0 ef ]
-"23
-[v _printConfusionMatrix `(v ~T0 @X0 0 ef ]
-"20
-[v _printMetrics `(v ~T0 @X0 0 ef ]
 "25
+[v _printConfusionMatrix `(v ~T0 @X0 0 ef ]
+"24
+[v _printMetrics `(v ~T0 @X0 0 ef ]
+"21
 [v _showOff `(v ~T0 @X0 0 ef1`i ]
-"40 src/main.c
+"29
 [v _randomNumber `(i ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -10766,76 +10766,79 @@ Version 3.2 HI-TECH Software Intermediate Code
 "243
 [v _confusionMatrix `F5169 ~T0 @X0 -> 10 `i e ]
 [; ;defines.h: 243: int confusionMatrix[10][10];
-[; ;support.h: 13: float calculateProbability(float x, float mean, float stdev);
-[; ;support.h: 14: float calculateClassProbability(int classNumber, float *inputVector);
-[; ;support.h: 15: int predict(float *inputVector);
-[; ;support.h: 16: float getAccuracy();
-[; ;support.h: 17: float getPrecision(int class);
-[; ;support.h: 18: float getRecall(int class);
-[; ;support.h: 19: void calculateMetrics();
-[; ;support.h: 20: void printMetrics();
-[; ;support.h: 21: void printSummaries();
-[; ;support.h: 22: void printTestset();
-[; ;support.h: 23: void printConfusionMatrix();
-[; ;support.h: 24: void printTestSetLine(int line);
-[; ;support.h: 25: void showOff(int testLine);
-"9 src/main.c
+[; ;support.h: 14: float calculateProbability(float x, float mean, float stdev);
+[; ;support.h: 15: float calculateClassProbability(int classNumber, float *inputVector);
+[; ;support.h: 16: int predict(float *inputVector);
+[; ;support.h: 17: float getAccuracy();
+[; ;support.h: 18: float getPrecision(int class);
+[; ;support.h: 19: float getRecall(int class);
+[; ;support.h: 20: void calculateMetrics();
+[; ;support.h: 21: void showOff(int testLine);
+[; ;support.h: 24: void printMetrics();
+[; ;support.h: 25: void printConfusionMatrix();
+[; ;support.h: 26: void printTestLine(int line);
+[; ;support.h: 29: int randomNumber();
+[; ;support.h: 30: unsigned int ADCRead(unsigned char ch);
+[; ;support.h: 31: void init_adc(void);
+[; ;support.h: 32: void init_uart(void);
+[; ;support.h: 33: void putch(unsigned char data);
+"10 src/main.c
 [p x FOSC=HS ]
-"10
-[p x IESO=OFF ]
 "11
-[p x PWRT=OFF ]
+[p x IESO=OFF ]
 "12
-[p x BORV=3 ]
+[p x PWRT=OFF ]
 "13
-[p x WDT=OFF ]
+[p x BORV=3 ]
 "14
-[p x WDTPS=32768 ]
+[p x WDT=OFF ]
 "15
-[p x MCLRE=OFF ]
+[p x WDTPS=32768 ]
 "16
-[p x LPT1OSC=OFF ]
+[p x MCLRE=OFF ]
 "17
-[p x PBADEN=OFF ]
+[p x LPT1OSC=OFF ]
 "18
-[p x STVREN=ON ]
+[p x PBADEN=OFF ]
 "19
+[p x STVREN=ON ]
+"20
 [p x LVP=OFF ]
-"23
+"24
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 23: void main() {
+[; ;main.c: 24: void main() {
 [e :U _main ]
 [f ]
-[; ;main.c: 25: init_uart();
-"25
+[; ;main.c: 27: init_uart();
+"27
 [e ( _init_uart ..  ]
-[; ;main.c: 26: init_adc();
-"26
+[; ;main.c: 30: init_adc();
+"30
 [e ( _init_adc ..  ]
-[; ;main.c: 28: printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");
-"28
+[; ;main.c: 32: printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");
+"32
 [e ( _printf :s 1C ]
-[; ;main.c: 31: calculateMetrics();
-"31
+[; ;main.c: 35: calculateMetrics();
+"35
 [e ( _calculateMetrics ..  ]
-[; ;main.c: 34: printConfusionMatrix();
-"34
+[; ;main.c: 38: printConfusionMatrix();
+"38
 [e ( _printConfusionMatrix ..  ]
-[; ;main.c: 37: printMetrics();
-"37
+[; ;main.c: 41: printMetrics();
+"41
 [e ( _printMetrics ..  ]
-[; ;main.c: 40: showOff(randomNumber());
-"40
+[; ;main.c: 44: showOff(randomNumber());
+"44
 [e ( _showOff (1 ( _randomNumber ..  ]
-[; ;main.c: 42: while(1);
-"42
+[; ;main.c: 46: while(1);
+"46
 [e :U 566 ]
 [e :U 565 ]
 [e $U 566  ]
 [e :U 567 ]
-[; ;main.c: 43: }
-"43
+[; ;main.c: 47: }
+"47
 [e :UE 564 ]
 }
 [p f _printf 8388608 ]
