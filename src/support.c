@@ -27,8 +27,7 @@ float calculateProbability(float x, float mean, float stdev)
 {
     float number = x - mean;
     float power  = -(number*number)/(2*stdev*stdev);
-    float res = ((SQRT2PI * stdev));
-     
+    float res = ((SQRT2PI * stdev));     
     return power-log(res);
     
 }
@@ -47,15 +46,11 @@ float calculateClassProbability(int classNumber, float *inputVector)
     for(i = 0; i<COLUMNS-1; i++)
     {
         /*  considering the Bayes criterion, the total probability is the product of each single probability */
-        classProbability+=calculateProbability(inputVector[i], means[classNumber][i], stdevs[classNumber][i] );
-       // printf("Class: %d\n", classNumber);
-       // printf("Column: %d\n", i);
-       
+        classProbability+=calculateProbability(inputVector[i], means[classNumber][i], stdevs[classNumber][i] ); 
     }
 
     return classProbability;
-    //return 1;
-
+   
 }
 
 
@@ -198,7 +193,6 @@ void printMetrics()
         printf("Metrics for Class %d\n", i);
         printf("Precision %f\n", getPrecision(i));
         printf("Recall %f\n\n",getRecall(i) );
-        //printf("\n");
     }
 
     printf("\nModel Accuracy considering %d test entries: %f%%\n", TEST_LINES, getAccuracy());
@@ -241,7 +235,7 @@ void printTestSetLine(int line)
     }
 }
 
-unsigned char UART1Config = 0, baud = 0;
+
 
 void putch(unsigned char data) {
     while( ! PIR1bits.TXIF)          // wait until the transmitter is ready
@@ -250,6 +244,8 @@ void putch(unsigned char data) {
 }
 
 void init_uart(void) {
+    unsigned char UART1Config = 0, baud = 0;
+    
     TXSTAbits.TXEN = 1;               // enable transmitter
     RCSTAbits.SPEN = 1;               // enable serial port
     

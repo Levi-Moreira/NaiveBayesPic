@@ -4,7 +4,7 @@
  * @version V1.0
  * @date    14-September-2016
  * @brief   This file contains the prototypes for the
- *          functions contained in prediction/prediction.c.
+ *          functions contained in support.c.
  * */
 
 #ifndef SUPPORT_H
