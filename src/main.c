@@ -1,12 +1,37 @@
-#define _XTAL_FREQ 20000000
+/**
+ * @file    main.c
+ * @author  Alan Jeferson and Levi Moreira
+ * @version V1.0
+ * @date    25-August-2016
+ * @brief   This file contains the main body of the program. Please refer to the README file for more information
+ *          on how to run/use this code.
+ * 
+ * 
+ *  This file is part of NaiveBayes for PIC.
+ *
+ *   NaiveBayes for PIC is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   NaiveBayes for PIC is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+
+ *   You should have received a copy of the GNU General Public License
+ *   along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ * */
+#define _XTAL_FREQ 20000000    /**< The clock frequency being used. */
+
 #include <xc.h>
-#include <plib/usart.h>
 #include <math.h>
 #include <stdio.h>
-#include <time.h>
 #include "../include/defines.h"
-// BEGIN CONFIG
-#pragma config FOSC     = HS    /// EXTERN CLOCK 8MHZ
+#include "../include/support.h"
+
+/* Pragmas to configure the use of PIC18F*/
+#pragma config FOSC     = HS    /// EXTERN CLOCK 20MHZ
 #pragma config IESO     = OFF   /// INTERNAL/EXTERNAL OSCILATOR DISABLE
 #pragma config PWRT     = OFF   /// DISABLE POWER-UP TIMER
 #pragma config BORV     = 3     /// BROWN-OUT RESET MINIMUM
@@ -16,47 +41,32 @@
 #pragma config LPT1OSC  = OFF   /// TIMER1 LOW POWER OPERATION
 #pragma config PBADEN   = OFF   /// PORTB.RB0,1,2,3,4 AS I/O DIGITAL
 #pragma config STVREN   = ON    /// STACK FULL/UNDERFLOW CAUSE RESET
-#pragma config LVP      = OFF   /// DISABLE LOW VOLTAGE PROGRAM (ICSP DISABLE)
+#pragma config LVP      = OFF   /// DISABLE LOW VOLTAGE PROGRAM (ICSP DISABLE)*/
 //END CONFIG
 
-unsigned char UART1Config = 0, baud = 0;
 
-void putch(unsigned char data) {
-    while( ! PIR1bits.TXIF)          // wait until the transmitter is ready
-        continue;
-    TXREG = data;                     // send one character
-}
-
-void init_uart(void) {
-    TXSTAbits.TXEN = 1;               // enable transmitter
-    RCSTAbits.SPEN = 1;               // enable serial port
+void main() {
     
-    UART1Config = USART_TX_INT_OFF & USART_RX_INT_OFF & USART_ASYNCH_MODE & USART_EIGHT_BIT & USART_BRGH_HIGH ;
-    baud = 129;
-    OpenUSART(UART1Config,baud);
-
-}
-
-void main()
-{
+    /* Initilizes the UART for printing*/
     init_uart();
     
-    //srand(time(NULL));
-    printf("Calculating metrics\n");
+    /* Initilizes the ADC for random number generation*/
+    init_adc();
+    
+    printf("\nRunning Naive Bayes in Dataset: mfeat\n\n");
+
+    /* Calculates Recall and Precision for classes */
     calculateMetrics();
-    
-    
-    printf("Printing confusion matrix\n");
+
     /* Print confusion matrix for the model */
     printConfusionMatrix();
-    
+
     /* Show the metrics for the model */
-    
-    printf("Printing metrics\n");
     printMetrics();
 
     /* Show off the prediction skills */
-    //showOff(rand()%TEST_LINES);
+    showOff(randomNumber());
     
+    /* Loops forever*/
     while(1);
 }
