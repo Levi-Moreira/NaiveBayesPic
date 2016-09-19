@@ -1,4 +1,28 @@
-#define _XTAL_FREQ 20000000
+/**
+ * @file    main.c
+ * @author  Alan Jeferson and Levi Moreira
+ * @version V1.0
+ * @date    25-August-2016
+ * @brief   This file contains the main body of the program. Please refer to the README file for more information
+ *          on how to run/use this code.
+ * 
+ * 
+ *  This file is part of NaiveBayes for PIC.
+ *
+ *   NaiveBayes for PIC is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   NaiveBayes for PIC is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+
+ *   You should have received a copy of the GNU General Public License
+ *   along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ * */
+#define _XTAL_FREQ 20000000    /**< The clock frequency being used. */
 
 #include <xc.h>
 #include <math.h>
@@ -6,7 +30,7 @@
 #include "../include/defines.h"
 #include "../include/support.h"
 
-// BEGIN CONFIG
+/* Pragmas to configure the use of PIC18F*/
 #pragma config FOSC     = HS    /// EXTERN CLOCK 20MHZ
 #pragma config IESO     = OFF   /// INTERNAL/EXTERNAL OSCILATOR DISABLE
 #pragma config PWRT     = OFF   /// DISABLE POWER-UP TIMER
@@ -43,5 +67,6 @@ void main() {
     /* Show off the prediction skills */
     showOff(randomNumber());
     
+    /* Loops forever*/
     while(1);
 }
