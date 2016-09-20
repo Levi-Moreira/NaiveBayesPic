@@ -113,9 +113,11 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li>The comments can be used to generate automatic documentation</li>
 </ul>
 <h2>2) Development context</h2>
-<p>The code was devolped with the purpose of running in a PIC18F4550 microcontroller, therefore memory and time restrictions should be observed in order to run the code properly. The following constraints should be noted:</p><ul>
-<li>When developing the code we had 32Kbytes of ROM and 2Kbytes of RAM available, therefore our datasets were modeled and made to fit these requirements. Unless you have an external memory unit, your datasets should follow the same guidelines. To see more on how to use your own datasets, please refer to section 3.</li>
+<p>The code was devolped with the purpose of running in a <b>PIC18F4550</b> microcontroller, therefore memory and time restrictions should be observed in order to run the code properly. The following constraints should be noted:</p><ul>
+<li>When developing the code we had <b>32Kbytes</b> of ROM and <b>2Kbytes</b> of RAM available, therefore our datasets were modeled and made to fit these requirements. Unless you have an external memory unit, your datasets should follow the same guidelines. To see more on how to use your own datasets, please refer to section 3.</li>
 <li>The code was made to run in the <b>MPLAB X IDE</b> with the <b>XC8</b> compiler , we don't guarantee it will run anywhere else (not even in your version of MPLABX and XC8 for that matter).</li>
+<li>The project is configured to use a <b>24 bits float</b> size. This was done in order to better use the memory space available as to fit the maximum amount of data in the testSet. This decision, however, influences in the precision of the probabilities presented. You need to analyse this to see if the decrease in precision won't influence your results, for the three datasets tested there wasn't any problems.</li>
+<li>You need to have installed the peripheral libraries in order to make the <b>USART</b> work in this project. To download this go to: <a href="http://www.microchip.com/mplab/compilers">http://www.microchip.com/mplab/compilers</a></li>
 </ul>
 <h2>3) Where to start</h2>
 <h4>a) The project files:</h4>
